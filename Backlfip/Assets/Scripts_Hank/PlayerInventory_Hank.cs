@@ -17,10 +17,12 @@ public class PlayerInventory_Hank : MonoBehaviour
     private GameObject inventoryUI;
     private bool tabDownLastFrame = false;
     private List<Image> uiImageSlots;
+    private Canvas uiCanvas;
 
     void Start()
     {
         inventoryUI = Instantiate(inventoryUIPrefab, transform.parent);
+        uiCanvas = inventoryUI.GetComponentInChildren<Canvas>();
 
         // adding more elements inventoryUIPrefab potentially increases this list
         // if there are more than five images objects inside its canvas, the drawing prodedure breaks
@@ -47,6 +49,8 @@ public class PlayerInventory_Hank : MonoBehaviour
 
         inventoryUI.transform.position = gameObject.transform.position;
 
+
+        if (!uiCanvas.enabled) return;
         int potentiallyEmptySlots = 5;
         for (int i = 0; i < items.Count; i++)
         {
@@ -65,6 +69,7 @@ public class PlayerInventory_Hank : MonoBehaviour
 
     void Show()
     {
+        uiCanvas.enabled = !uiCanvas.enabled;
         foreach (GameObject item in items)
         {
             Item_Hank itemScript = item.GetComponent<Item_Hank>();
