@@ -10,7 +10,7 @@ public class Player_Hank : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerInventory_Hank inventory;
-    private Timer_Hank timeToStopTimer = new Timer_Hank(.5f);
+    private Timer_Hank timeToStopTimer = new(.5f);
     private bool qDownLastFrame = false;
 
     // Start is called before the first frame update

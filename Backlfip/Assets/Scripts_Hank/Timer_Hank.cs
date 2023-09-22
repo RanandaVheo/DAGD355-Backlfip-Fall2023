@@ -19,7 +19,7 @@ public class Timer_Hank
 
     public void Update()
     {
-        if (this.paused) return;
+        if (paused) return;
 
         if (timeLeft <= 0)
         {
@@ -44,7 +44,7 @@ public class Timer_Hank
 
     public void TogglePause()
     {
-        this.paused = !this.paused;
+        paused = !paused;
     }
 }
 

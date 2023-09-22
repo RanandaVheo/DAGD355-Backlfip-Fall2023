@@ -1,21 +1,32 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerInventory_Hank : MonoBehaviour
 {
-    List<GameObject> items = new List<GameObject>();
+    List<GameObject> items = new();
     public int inventorySize = 5;
 
 
+
+    [SerializeField] GameObject inventoryUIPrefab;
+    private GameObject inventoryUI;
     private bool tabDownLastFrame = false;
+    private List<Image> uiImageSlots;
 
     void Start()
     {
+        inventoryUI = Instantiate(inventoryUIPrefab, transform.parent);
 
+        // adding more elements inventoryUIPrefab potentially increases this list
+        // if there are more than five images objects inside its canvas, the drawing prodedure breaks
+        uiImageSlots = inventoryUI.GetComponentsInChildren<Image>().ToList();
+        
+        
     }
 
     // Update is called once per frame
@@ -33,6 +44,23 @@ public class PlayerInventory_Hank : MonoBehaviour
         {
             tabDownLastFrame = false;
         }
+
+        inventoryUI.transform.position = gameObject.transform.position;
+
+        int potentiallyEmptySlots = 5;
+        for (int i = 0; i < items.Count; i++)
+        {
+            potentiallyEmptySlots--;
+            uiImageSlots[i].sprite = items[i].GetComponent<Item_Hank>().spriteRenderer.sprite;
+            uiImageSlots[i].color = items[i].GetComponent<Item_Hank>().spriteRenderer.color;
+        }
+        for (int i = 4; potentiallyEmptySlots > 0; potentiallyEmptySlots--)
+        {
+            uiImageSlots[i].sprite = null;
+            uiImageSlots[i].color = Color.white;
+            i--;
+        }
+        
     }
 
     void Show()
@@ -100,7 +128,7 @@ public class PlayerInventory_Hank : MonoBehaviour
 
     bool IsItemValid(GameObject item)
     {
-        if (item.tag != "Item")
+        if (!item.CompareTag("Item"))
         {
             Debug.Log("Item missing 'Item' tag");
             return false;

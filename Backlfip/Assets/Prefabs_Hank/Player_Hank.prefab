@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 5
+  inventoryUIPrefab: {fileID: 4138561429506963663, guid: 65367ce05dacb3349870bd6d23b25a7e, type: 3}
 --- !u!58 &8385939803812674965
 CircleCollider2D:
   m_ObjectHideFlags: 0

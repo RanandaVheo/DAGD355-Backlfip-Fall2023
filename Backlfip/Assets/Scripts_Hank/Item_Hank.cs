@@ -11,15 +11,17 @@ public class Item_Hank : MonoBehaviour
     public int maxStack = 3;
 
     private bool onGround = true;
-    private SpriteRenderer spriteRenderer;
+    public  SpriteRenderer spriteRenderer;
     private CircleCollider2D[] circleColliders;
-    private Timer_Hank pickupCooldownTimer = new Timer_Hank(1);
+    private Timer_Hank pickupCooldownTimer = new(1);
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         circleColliders = GetComponents<CircleCollider2D>();
+
+        spriteRenderer.color = Random.ColorHSV();
     }
 
     // Update is called once per frame
@@ -31,7 +33,7 @@ public class Item_Hank : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!onGround || !pickupCooldownTimer.isDone) return;
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             Player_Hank player_HankScript = collision.GetComponent<Player_Hank>();
             bool addedSuccessfully = player_HankScript.AddToInventory(gameObject);

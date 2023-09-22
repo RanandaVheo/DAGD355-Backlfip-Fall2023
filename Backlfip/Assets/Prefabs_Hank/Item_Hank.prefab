@@ -51,8 +51,9 @@ MonoBehaviour:
   itemName: template name
   description: create prefab instances for specific items
   canStack: 1
-  amount: 2
+  amount: 3
   maxStack: 3
+  spriteRenderer: {fileID: 0}
 --- !u!58 &2891192280139672090
 CircleCollider2D:
   m_ObjectHideFlags: 0
