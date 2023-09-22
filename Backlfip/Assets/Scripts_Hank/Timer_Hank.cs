@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer_Hank
 {
-    float duration;
+    public float duration;
     public float timeLeft;
     public bool isDone = true;
     public bool autoRestart = false;

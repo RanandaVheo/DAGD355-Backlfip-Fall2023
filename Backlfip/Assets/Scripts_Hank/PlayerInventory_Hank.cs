@@ -15,7 +15,7 @@ public class PlayerInventory_Hank : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -51,8 +51,8 @@ public class PlayerInventory_Hank : MonoBehaviour
             Debug.Log("Could not add item(s) '" + item.name + "': invalid item.");
             return false;
         }
-        
-        
+
+
         Item_Hank currentItem = item.GetComponent<Item_Hank>();
 
         if (currentItem.canStack)
@@ -91,6 +91,13 @@ public class PlayerInventory_Hank : MonoBehaviour
         return true;
     }
 
+    public void Drop(GameObject item)
+    {
+        Item_Hank itemToDrop = item.GetComponent<Item_Hank>();
+        items.Remove(item);
+        itemToDrop.Drop();
+    }
+
     bool IsItemValid(GameObject item)
     {
         if (item.tag != "Item")
@@ -112,5 +119,18 @@ public class PlayerInventory_Hank : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public GameObject TryGetItem()
+    {
+        try
+        {
+            return items[0];
+        }
+        catch
+        {
+            return null;
+        }
+        
     }
 }

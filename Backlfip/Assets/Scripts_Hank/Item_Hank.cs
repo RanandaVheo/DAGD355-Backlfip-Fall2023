@@ -12,24 +12,25 @@ public class Item_Hank : MonoBehaviour
 
     private bool onGround = true;
     private SpriteRenderer spriteRenderer;
-    private CircleCollider2D circleCollider;
+    private CircleCollider2D[] circleColliders;
+    private Timer_Hank pickupCooldownTimer = new Timer_Hank(1);
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-        circleCollider = GetComponent<CircleCollider2D>();
+        circleColliders = GetComponents<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        pickupCooldownTimer.Update();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!onGround) return;
+        if (!onGround || !pickupCooldownTimer.isDone) return;
         if (collision.tag == "Player")
         {
             Player_Hank player_HankScript = collision.GetComponent<Player_Hank>();
@@ -42,6 +43,7 @@ public class Item_Hank : MonoBehaviour
 
     public void Drop()
     {
+        pickupCooldownTimer.Reset();
         onGround = true;
         Enable();
     }
@@ -49,13 +51,19 @@ public class Item_Hank : MonoBehaviour
     public void Disable()
     {
         spriteRenderer.enabled = false;
-        circleCollider.enabled = false;
+        foreach (CircleCollider2D circleCollider in circleColliders)
+        {
+            circleCollider.enabled = false;
+        }
     }
 
     public void Enable()
     {
         spriteRenderer.enabled = true;
-        circleCollider.enabled = true;
+        foreach (CircleCollider2D circleCollider in circleColliders)
+        {
+            circleCollider.enabled = true;
+        }
     }
 
 }

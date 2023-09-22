@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1657698682599726526}
   - component: {fileID: 8385939803812674965}
   - component: {fileID: 8611500026501327919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Hank
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  maxSpeed: 5
 --- !u!114 &1657698682599726526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2282823104673412700}
   - component: {fileID: 7647298582700867117}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
