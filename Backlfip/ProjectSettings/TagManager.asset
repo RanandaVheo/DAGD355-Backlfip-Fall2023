@@ -3,12 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Fishies
+  - QTE UI
+  - QTE UI target
+  - Floor
+  - Underwater
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HookCol
   - Water
   - UI
   - 
