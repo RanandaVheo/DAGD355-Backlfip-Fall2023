@@ -24,6 +24,8 @@ public class Item_Hank : MonoBehaviour
         spriteRenderer.color = Random.ColorHSV();
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
