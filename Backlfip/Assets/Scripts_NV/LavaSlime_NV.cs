@@ -5,7 +5,7 @@ using UnityEngine;
 public class LavaSlime_NV : MonoBehaviour
 {
 
-    public Transform player;
+    GameObject player;
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -13,24 +13,13 @@ public class LavaSlime_NV : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = player.position - transform.position;
-        direction.Normalize();
-        movement = direction;
-    }
-
-    private void FixedUpdate()
-    {
-        moveEnemy(movement);
-    }
-
-    void moveEnemy(Vector2 direction)
-    {
-        rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 }
