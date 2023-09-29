@@ -348,7 +348,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.17437029, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.49897224, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -367,8 +367,8 @@ Transform:
   m_GameObject: {fileID: 324929337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -3.25, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 896747587}
   - component: {fileID: 896747586}
   - component: {fileID: 896747589}
+  - component: {fileID: 896747590}
   m_Layer: 0
   m_Name: MainCamera_NV
   m_TagString: MainCamera
@@ -500,6 +501,21 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &896747590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896747585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009e397bb271de149b5ea2a7abd83ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 324929337}
+  rockPrefab: {fileID: 1442575101897923300, guid: be3e39f4b0d826c4695f8f3736dcd43f, type: 3}
+  rockSpeed: 60
 --- !u!1 &1014730379
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee712c39a5af7e34d8c866d138cfa800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lavaSlime: {fileID: 7535158563778163743, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+  lavaSlimePrefab: {fileID: 7535158563778163743, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
   respawnTime: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

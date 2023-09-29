@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlimeSpawner : MonoBehaviour
 {
 
-    public GameObject lavaSlime;
+    public GameObject lavaSlimePrefab;
     public float respawnTime = 2f;
     private Rigidbody2D rb;
 
@@ -24,7 +24,7 @@ public class SlimeSpawner : MonoBehaviour
 
     private void spawnSlime()
     {
-        GameObject s = Instantiate(lavaSlime) as GameObject;
+        GameObject s = Instantiate(lavaSlimePrefab) as GameObject;
         s.transform.position = new Vector2(transform.position.x, transform.position.y);
     }
 
