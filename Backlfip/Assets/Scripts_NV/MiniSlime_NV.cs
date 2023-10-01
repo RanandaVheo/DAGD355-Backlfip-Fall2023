@@ -6,6 +6,7 @@ public class MiniSlime_NV : MonoBehaviour
 {
 
     GameObject player;
+    public GameObject fireJuicePrefab;
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -25,8 +26,15 @@ public class MiniSlime_NV : MonoBehaviour
 
         if (miniSlimeHealth == 0)
         {
+            spawnFireJuice();
             Destroy(gameObject);
         }
+    }
+
+    private void spawnFireJuice()
+    {
+        GameObject j = Instantiate(fireJuicePrefab) as GameObject;
+        j.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

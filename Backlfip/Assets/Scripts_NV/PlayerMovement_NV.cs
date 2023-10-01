@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement_NV : MonoBehaviour
 {
 
     public float speed;
+    public float fireJuice = 0f;
     private Rigidbody2D rb;
     private bool grounded = true;
 
@@ -41,9 +42,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if(collision.gameObject.tag == "Platform")
         {
             grounded = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Juice")
+        {
+            fireJuice++;
+            Debug.Log("MORE JUICE!");
         }
     }
 

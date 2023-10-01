@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeSpawner : MonoBehaviour
+public class SlimeSpawner_NV : MonoBehaviour
 {
 
     public GameObject lavaSlimePrefab;
-    public float respawnTime = 2f;
+    public float respawnTime = 5f;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update

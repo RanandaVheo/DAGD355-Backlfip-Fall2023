@@ -35,14 +35,14 @@ public class LavaSlime_NV : MonoBehaviour
 
     private void spawnMiniSlime1()
     {
-        GameObject s = Instantiate(miniSlimePrefab) as GameObject;
-        s.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
+        GameObject m = Instantiate(miniSlimePrefab) as GameObject;
+        m.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
     }
 
     private void spawnMiniSlime2()
     {
-        GameObject s = Instantiate(miniSlimePrefab) as GameObject;
-        s.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
+        GameObject m = Instantiate(miniSlimePrefab) as GameObject;
+        m.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

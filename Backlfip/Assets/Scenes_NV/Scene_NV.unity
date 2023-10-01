@@ -211,6 +211,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &247582277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919528434104879618, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535158563778163743, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
+      propertyPath: m_Name
+      value: Slime_NV
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
 --- !u!1 &324929337
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.5
+  fireJuice: 0
 --- !u!58 &324929339
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -826,7 +884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaSlimePrefab: {fileID: 7535158563778163743, guid: 4d29caabc9af3a84cb6a84d55590ef77, type: 3}
-  respawnTime: 2
+  respawnTime: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -836,3 +894,4 @@ SceneRoots:
   - {fileID: 1418337143}
   - {fileID: 1592044634}
   - {fileID: 324929342}
+  - {fileID: 247582277}

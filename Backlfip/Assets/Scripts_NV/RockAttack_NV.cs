@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockAttack : MonoBehaviour
+public class RockAttack_NV : MonoBehaviour
 {
 
     public GameObject player;
