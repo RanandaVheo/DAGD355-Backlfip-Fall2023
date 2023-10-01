@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9313f7fb63d274f479f84b719cc0872c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniSlimePrefab: {fileID: 2624276657588719439, guid: a48e4c22959e6b843809c3ae862c89ba, type: 3}
   speed: 4

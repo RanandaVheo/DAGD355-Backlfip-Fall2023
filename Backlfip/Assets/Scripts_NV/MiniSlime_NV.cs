@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LavaSlime_NV : MonoBehaviour
+public class MiniSlime_NV : MonoBehaviour
 {
 
     GameObject player;
-    public GameObject miniSlimePrefab;
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float slimeHealth = 5f;
+    private float miniSlimeHealth = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,32 +23,17 @@ public class LavaSlime_NV : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
-        if(slimeHealth == 0)
+        if (miniSlimeHealth == 0)
         {
-            spawnMiniSlime1();
-            spawnMiniSlime2();
             Destroy(gameObject);
         }
-    }
-
-
-    private void spawnMiniSlime1()
-    {
-        GameObject s = Instantiate(miniSlimePrefab) as GameObject;
-        s.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
-    }
-
-    private void spawnMiniSlime2()
-    {
-        GameObject s = Instantiate(miniSlimePrefab) as GameObject;
-        s.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Rock")
         {
-            slimeHealth--;
+            miniSlimeHealth--;
         }
         if (collision.gameObject.tag == "Player")
         {
