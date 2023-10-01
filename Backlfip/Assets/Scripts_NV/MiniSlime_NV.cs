@@ -8,6 +8,7 @@ public class MiniSlime_NV : MonoBehaviour
     GameObject player;
     public GameObject fireJuicePrefab;
     public float speed = 5f;
+    public float burnTime = 1f;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float miniSlimeHealth = 2f;
@@ -43,9 +44,30 @@ public class MiniSlime_NV : MonoBehaviour
         {
             miniSlimeHealth--;
         }
+        if (collision.gameObject.tag == "Fireball")
+        {
+            Debug.Log("BURN");
+            StartCoroutine(burnDamage());
+        }
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator burnDamage()
+    {
+        while (true)
+        {
+            miniSlimeHealth--;
+            Debug.Log("BURNING");
+            yield return new WaitForSeconds(burnTime);
+            miniSlimeHealth--;
+            Debug.Log("BURNING");
+            yield return new WaitForSeconds(burnTime);
+            miniSlimeHealth--;
+            Debug.Log("BURNING");
+            StopCoroutine(burnDamage());
         }
     }
 }

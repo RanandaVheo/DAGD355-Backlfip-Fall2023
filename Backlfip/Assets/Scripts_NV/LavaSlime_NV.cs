@@ -8,6 +8,7 @@ public class LavaSlime_NV : MonoBehaviour
     GameObject player;
     public GameObject miniSlimePrefab;
     public float speed = 5f;
+    public float burnTime = 1f;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float slimeHealth = 5f;
@@ -51,9 +52,30 @@ public class LavaSlime_NV : MonoBehaviour
         {
             slimeHealth--;
         }
+        if (collision.gameObject.tag == "Fireball")
+        {
+            Debug.Log("BURN");
+            StartCoroutine(burnDamage());
+        }
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator burnDamage()
+    {
+        while (true)
+        {
+            slimeHealth--;
+            Debug.Log("BURNING");
+            yield return new WaitForSeconds(burnTime);
+            slimeHealth--;
+            Debug.Log("BURNING");
+            yield return new WaitForSeconds(burnTime);
+            slimeHealth--;
+            Debug.Log("BURNING");
+            StopCoroutine(burnDamage());
         }
     }
 }
