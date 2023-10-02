@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 1260357004152280076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.32723728, w: 0.94494224}
-  m_LocalPosition: {x: -0.32000017, y: -0.61, z: 0}
+  m_LocalPosition: {x: -0.11, y: 0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1361,8 +1361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRef: {fileID: 478622244441333597}
-  poleRef: {fileID: 0}
-  bobberRef: {fileID: 0}
+  poleRef: {fileID: 6022838895999398489}
+  bobberRef: {fileID: 3418563950545014280}
 --- !u!224 &3044168294141580682
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1391,9 +1391,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7348554677287785837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: dfa9d9b8afa4cb34593bf1473de08c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QTE_RectHolder: []
+  QTE_TargetHolder: []
+  managerRef: {fileID: 1415031239}
+  scoreRef: {fileID: 1132876139462208979}
+  HPbar: {fileID: 3536493294851649242}
+  loseRef: {fileID: 7985932607909527094}
+  winRef: {fileID: 7947203938118340697}
+  QTEprefab: {fileID: 1408255709738931272, guid: ba8b6ce59277e274681a92824d06683d, type: 3}
+  BasicScoreText: 'Score: '
+  QTEspeed: 5
 --- !u!50 &3418563950545014280
 Rigidbody2D:
   serializedVersion: 4
@@ -1453,7 +1463,7 @@ RectTransform:
   m_AnchorMin: {x: 0.48124993, y: 0.8442482}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 24, y: 0}
-  m_SizeDelta: {x: -48, y: -50}
+  m_SizeDelta: {x: -49, y: -50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &3630180514883863514
 GameObject:
@@ -1752,7 +1762,7 @@ Transform:
   m_GameObject: {fileID: 4836073037455644579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.16, z: 0}
+  m_LocalPosition: {x: 0, y: -1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2110,7 +2120,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

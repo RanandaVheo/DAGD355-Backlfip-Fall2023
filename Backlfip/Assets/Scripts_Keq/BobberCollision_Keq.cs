@@ -6,7 +6,7 @@ using UnityEngine;
 public class BobberCollision_Keq : MonoBehaviour
 {
     public GameObject spawnedObject;
-    public GameManager managerRef;
+    public GameManager_Keq managerRef;
     public float COOLDOWN_TIMER_MAX = 1f;
 
     private float cooldownTimer = 1f;
@@ -36,5 +36,10 @@ public class BobberCollision_Keq : MonoBehaviour
             managerRef.isFishing = true; //cooldownTimer -= Time.deltaTime;
 
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Underwater")) managerRef.isFishing = false;
     }
 }

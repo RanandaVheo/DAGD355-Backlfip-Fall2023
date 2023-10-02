@@ -10,6 +10,7 @@ TagManager:
   - QTE UI target
   - Floor
   - Underwater
+  - QTE object
   layers:
   - Default
   - TransparentFX

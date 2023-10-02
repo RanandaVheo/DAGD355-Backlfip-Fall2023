@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FishingGame : MonoBehaviour
+public class FishingGame_Keq : MonoBehaviour
 {
     private Vector3[] linePoints;
 
@@ -37,7 +37,7 @@ public class FishingGame : MonoBehaviour
 
         lineRef.SetPositions(linePoints);
 
-        if (Input.GetMouseButtonDown(0)) clickToCast();
+        if (Input.GetMouseButtonDown(0) && !prevMousePressed) clickToCast();
 
         prevMousePressed = Input.GetMouseButtonDown(0);
 
@@ -48,21 +48,17 @@ public class FishingGame : MonoBehaviour
     //Used for casting or reeling in the fishing pole bobber with clicks
     private void clickToCast()
     {
-        //if the player is clicking the mouse
-        if(!prevMousePressed)
-        {
-            if(castingLine) castingLine = false; //if we already cast our line, reel it back in
-            else if(!castingLine) //if we haven't cast our line yet, cast it out
-            {
-                Vector3 mouseVec = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get where the player is pointing at
-                mouseVec = mouseVec - bobberRef.transform.position; //calculate the direction of the click compared to the bobber's current location
-                mouseVec = mouseVec.normalized; //normalize that vector
-                mouseVec = new Vector3(mouseVec.x, .6f, 0f); //this makes the bobber shoot up a little, and towards the mouse
-                bobberRef.AddForce(mouseVec * 75); //this sets the force it moves with
-                castingLine = true; //after the above steps, the line has been cast
-            }
-        }
+        if(castingLine) castingLine = false; //if we already cast our line, reel it back in
 
+        else if(!castingLine) //if we haven't cast our line yet, cast it out
+        {
+            Vector3 mouseVec = Camera.main.ScreenToWorldPoint(Input.mousePosition); //get where the player is pointing at
+            mouseVec = mouseVec - bobberRef.transform.position; //calculate the direction of the click compared to the bobber's current location
+            mouseVec = mouseVec.normalized; //normalize that vector
+            mouseVec = new Vector3(mouseVec.x, .6f, 0f); //this makes the bobber shoot up a little, and towards the mouse
+            bobberRef.AddForce(mouseVec * 75); //this sets the force it moves with
+            castingLine = true; //after the above steps, the line has been cast
+        }
     }
 
 }

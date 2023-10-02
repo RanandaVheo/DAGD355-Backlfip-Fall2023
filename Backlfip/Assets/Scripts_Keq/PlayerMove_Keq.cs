@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove_Keq : MonoBehaviour
 {
-    public GameManager managerRef;
+    public GameManager_Keq managerRef;
     public float speed = 10f;
 
     private Rigidbody2D rb;
@@ -23,8 +23,10 @@ public class PlayerMove : MonoBehaviour
 
         if (!managerRef.isGameOver)
         {
-            transform.position += new Vector3(h, 0f, 0f) * Time.deltaTime * speed;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, Time.deltaTime * 320);
+
+            //for now, lock player movement while fishing. Can be taken out later if it's not fun for play
+            if(!managerRef.isFishing) transform.position += new Vector3(h, 0f, 0f) * Time.deltaTime * speed;
         }
 
     }
