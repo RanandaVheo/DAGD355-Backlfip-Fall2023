@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 896747589}
   - component: {fileID: 896747590}
   - component: {fileID: 896747591}
+  - component: {fileID: 896747592}
   m_Layer: 0
   m_Name: MainCamera_NV
   m_TagString: MainCamera
@@ -590,6 +591,20 @@ MonoBehaviour:
   player: {fileID: 324929337}
   fireballPrefab: {fileID: 2798316474885875136, guid: 311dec23c9bc7bc47b2abb92ed01ff55, type: 3}
   rockSpeed: 75
+--- !u!114 &896747592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896747585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74986b64f9a33d04da0dc06e2fa6eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 324929337}
+  lavaPuddlePrefab: {fileID: 395626475388967463, guid: 0a12a41b55d494745a31d67739b9a62b, type: 3}
 --- !u!1 &1014730379
 GameObject:
   m_ObjectHideFlags: 0

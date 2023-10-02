@@ -7,13 +7,14 @@ public class PlayerMovement_NV : MonoBehaviour
 
     public float speed;
     public float fireJuice = 0f;
+    public float lavaTime = 1f;
     private Rigidbody2D rb;
     private bool grounded = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -55,7 +56,17 @@ public class PlayerMovement_NV : MonoBehaviour
             fireJuice++;
             Debug.Log("MORE JUICE!");
         }
+        if (collision.gameObject.tag == "Lava")
+        {
+            Invoke("inLava", 1);
+            Invoke("inLava", 2);
+            Invoke("inLava", 3);
+        }
     }
 
-
+    private void inLava()
+    {
+        fireJuice++;
+        Debug.Log("MORE JUICE");
+    }
 }

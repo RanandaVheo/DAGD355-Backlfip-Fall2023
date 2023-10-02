@@ -9,6 +9,7 @@ TagManager:
   - Rock
   - Juice
   - Fireball
+  - Lava
   layers:
   - Default
   - TransparentFX

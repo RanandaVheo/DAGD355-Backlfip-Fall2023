@@ -46,8 +46,10 @@ public class MiniSlime_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Fireball")
         {
+            miniSlimeHealth--;
             Debug.Log("BURN");
-            StartCoroutine(burnDamage());
+            Invoke("burnDamage", 1);
+            Invoke("burnDamage", 2);
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -55,19 +57,27 @@ public class MiniSlime_NV : MonoBehaviour
         }
     }
 
-    IEnumerator burnDamage()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        while (true)
+        if (collision.gameObject.tag == "Lava")
         {
             miniSlimeHealth--;
-            Debug.Log("BURNING");
-            yield return new WaitForSeconds(burnTime);
-            miniSlimeHealth--;
-            Debug.Log("BURNING");
-            yield return new WaitForSeconds(burnTime);
-            miniSlimeHealth--;
-            Debug.Log("BURNING");
-            StopCoroutine(burnDamage());
+            Debug.Log("LAVA");
+            Invoke("lavaBurn", 1);
+            Invoke("lavaBurn", 2);
+            Invoke("lavaBurn", 3);
         }
+    }
+
+    private void burnDamage()
+    {
+        miniSlimeHealth--;
+        Debug.Log("BURNING");
+    }
+
+    private void lavaBurn()
+    {
+        miniSlimeHealth--;
+        Debug.Log("BURNING");
     }
 }

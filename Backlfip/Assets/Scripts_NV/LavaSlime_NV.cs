@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,11 @@ public class LavaSlime_NV : MonoBehaviour
     GameObject player;
     public GameObject miniSlimePrefab;
     public float speed = 5f;
-    public float burnTime = 1f;
+    public float burnTime = 2f;
+    public bool inLava = false;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float slimeHealth = 5f;
+    private float slimeHealth = 7f;
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +56,10 @@ public class LavaSlime_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Fireball")
         {
+            slimeHealth--;
             Debug.Log("BURN");
-            StartCoroutine(burnDamage());
+            Invoke("burnDamage", 1);
+            Invoke("burnDamage", 2);
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -63,19 +67,27 @@ public class LavaSlime_NV : MonoBehaviour
         }
     }
 
-    IEnumerator burnDamage()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        while (true)
+        if (collision.gameObject.tag == "Lava" )
         {
             slimeHealth--;
-            Debug.Log("BURNING");
-            yield return new WaitForSeconds(burnTime);
-            slimeHealth--;
-            Debug.Log("BURNING");
-            yield return new WaitForSeconds(burnTime);
-            slimeHealth--;
-            Debug.Log("BURNING");
-            StopCoroutine(burnDamage());
+            Debug.Log("LAVA");
+            Invoke("lavaBurn", 1);
+            Invoke("lavaBurn", 2);
+            Invoke("lavaBurn", 3);
         }
+    }
+
+    private void burnDamage()
+    {
+        slimeHealth--;
+        Debug.Log("BURNING");
+    }
+
+    private void lavaBurn()
+    {
+        slimeHealth--;
+        Debug.Log("BURNING");
     }
 }
