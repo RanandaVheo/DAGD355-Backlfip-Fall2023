@@ -22,6 +22,7 @@ public class LavaPuddle_NV : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            // NEED TO ADD: CHECK IF PLAYER HAS ENOUGH FIRE JUICE
             lavaPuddle();
         }
     }

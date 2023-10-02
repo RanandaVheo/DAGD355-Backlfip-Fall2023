@@ -6,7 +6,7 @@ public class PlayerMovement_NV : MonoBehaviour
 {
 
     public float speed;
-    public float fireJuice = 0f;
+    public float fireJuice = 5f;
     public float lavaTime = 1f;
     private Rigidbody2D rb;
     private bool grounded = true;
