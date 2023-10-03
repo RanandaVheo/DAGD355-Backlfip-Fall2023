@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6530441583221163775}
   - component: {fileID: 8443443114536925415}
   m_Layer: 0
-  m_Name: Fishies
+  m_Name: Fishies_Keq
   m_TagString: Fishies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

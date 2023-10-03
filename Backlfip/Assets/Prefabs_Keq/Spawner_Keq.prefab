@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1941867505708530731}
-  - component: {fileID: 1582566600696958690}
+  - component: {fileID: 4543479080008553564}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Spawner_Keq
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1582566600696958690
+--- !u!114 &4543479080008553564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8591628869462397831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a10a530553315b4e9107824b6959128, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aa32d05ff6c80f4d8c4707d76af4d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1816692425742161151, guid: abcf41822e1591f44a24bf6bf6aeb4d5, type: 3}
+  enemy: {fileID: 1816692425742161151, guid: e660936a53ec6014e80b2eae70be5fab, type: 3}
   managerRef: {fileID: 0}
+  cooldownTimer: 10

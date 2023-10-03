@@ -134,13 +134,13 @@ public class UIManager_Keq : MonoBehaviour
 
     private void spawnQTEs(int whichQTE)
     {
-        if ()
-        {
-            Vector3 thisGuyPos = new Vector3(Random.Range(50, Screen.width - 50), Random.Range(50, Screen.height - 50), 0f);
-            GameObject newQTE = Instantiate(QTEprefab, thisGuyPos, Quaternion.identity, transform);
-
-            QTE_RectHolder[i] = newQTE.GetComponentInChildren<RectTransform>();
-        }
+        //if ()
+        //{
+        //    Vector3 thisGuyPos = new Vector3(Random.Range(50, Screen.width - 50), Random.Range(50, Screen.height - 50), 0f);
+        //    GameObject newQTE = Instantiate(QTEprefab, thisGuyPos, Quaternion.identity, transform);
+//
+        //    QTE_RectHolder[i] = newQTE.GetComponentInChildren<RectTransform>();
+        //}
 
         GameObject[] objectArray = GameObject.FindGameObjectsWithTag("QTE UI target");
 

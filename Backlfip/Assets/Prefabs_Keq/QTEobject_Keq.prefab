@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6259303742841099100}
   m_Layer: 0
-  m_Name: QTEobject
+  m_Name: QTEobject_Keq
   m_TagString: QTE object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
