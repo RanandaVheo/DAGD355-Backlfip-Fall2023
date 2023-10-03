@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+
   - Enemy
   - Fishies
   - QTE UI
@@ -11,7 +12,14 @@ TagManager:
   - Floor
   - Underwater
   - QTE object
+  - Platform
+  - Enemy
+  - Rock
+  - Juice
+  - Fireball
+  - Lava
   - Item
+
   layers:
   - Default
   - TransparentFX
