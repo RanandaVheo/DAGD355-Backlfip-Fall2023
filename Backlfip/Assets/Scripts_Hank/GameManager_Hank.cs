@@ -22,7 +22,7 @@ public class GameManager_Hank : MonoBehaviour
         if (itemSpawnTimer.isDone)
         {
             itemSpawnTimer.Reset();
-            Instantiate(itemPrefab, tilemap.GetCellCenterWorld(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0)), Quaternion.identity, transform.parent);
+            //Instantiate(itemPrefab, tilemap.GetCellCenterWorld(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0)), Quaternion.identity, transform.parent);
             tilemap.GetCellCenterLocal(new Vector3Int(0, 0, 0));
         }
     }
