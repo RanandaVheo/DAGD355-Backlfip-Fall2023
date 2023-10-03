@@ -11,6 +11,7 @@ TagManager:
   - Floor
   - Underwater
   - QTE object
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - HookCol
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
@@ -47,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 4097487853
     locked: 0
