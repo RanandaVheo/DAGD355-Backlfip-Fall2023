@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
 
+  - Enemy
+  - Fishies
+  - QTE UI
+  - QTE UI target
+  - Floor
+  - Underwater
+  - QTE object
   - Platform
   - Enemy
   - Rock
@@ -17,7 +24,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HookCol
   - Water
   - UI
   - Player
