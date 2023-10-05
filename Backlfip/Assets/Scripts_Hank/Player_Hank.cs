@@ -10,6 +10,7 @@ public class Player_Hank : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerInventory_Hank inventory;
+    private Animator animator;
     private Timer_Hank timeToStopTimer = new(.5f);
     private bool qDownLastFrame = false;
 
@@ -18,6 +19,7 @@ public class Player_Hank : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         inventory = GetComponent<PlayerInventory_Hank>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,8 @@ public class Player_Hank : MonoBehaviour
         {
             qDownLastFrame = false;
         }
+
+        animator.SetBool("IsMoving", rb.velocity.x > 1f || rb.velocity.x < -1f);
     }
 
     public void DropFromInventory(GameObject item)
