@@ -11,12 +11,15 @@ public class GameManager_Keq : MonoBehaviour
     public int howManyQTE = 3; //how many QTE circles do we want to popup during minigames
     public float fishingTimer;
     public float fishingTimerMax = 4f;
+    public float QTEdelayTimer = 1.5f;
 
     public int scoreTally = 0;
     public int WinCondition = 5;
 
     public int playerHP = 10;
     public int playerHPMax = 10;
+
+    public bool prevMousePressed = false;
 
     //public GameObject QTEprefab;
 
@@ -41,5 +44,7 @@ public class GameManager_Keq : MonoBehaviour
         }
 
         if (scoreTally >= WinCondition || winOrLose) isGameOver = true;
+
+        prevMousePressed = Input.GetMouseButtonDown(0);
     }
 }

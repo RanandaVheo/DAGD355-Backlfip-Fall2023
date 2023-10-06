@@ -8,6 +8,8 @@ public class FishingGame_Keq : MonoBehaviour
 {
     private Vector3[] linePoints;
 
+    public GameManager_Keq managerRef;
+
     public LineRenderer lineRef;
     public Transform poleRef;
     public Rigidbody2D bobberRef;
@@ -26,11 +28,17 @@ public class FishingGame_Keq : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (castingLine == false && Vector3.Distance(bobberRef.transform.position, poleRef.position) > 4f)
+        //if we are fishing, we want the bobber to stop moving. If we aren't fishing, the bobber should move back to neutral position
+        if (managerRef.isFishing)
+        {
+            bobberRef.velocity = Vector2.zero;
+            bobberRef.angularVelocity = 0;
+        }
+        else if (castingLine == false && Vector3.Distance(bobberRef.transform.position, poleRef.position) > 4f && !managerRef.isFishing)
         {
             bobberRef.transform.position = Vector3.MoveTowards(bobberRef.transform.position, poleRef.position, 20 * Time.deltaTime);
         }
+
 
         linePoints[0] = poleRef.position;
         linePoints[1] = bobberRef.transform.position;
@@ -41,14 +49,12 @@ public class FishingGame_Keq : MonoBehaviour
 
         prevMousePressed = Input.GetMouseButtonDown(0);
 
-        
-
     }
 
     //Used for casting or reeling in the fishing pole bobber with clicks
     private void clickToCast()
     {
-        if(castingLine) castingLine = false; //if we already cast our line, reel it back in
+        if(castingLine && !managerRef.isFishing) castingLine = false; //if we already cast our line, reel it back in
 
         else if(!castingLine) //if we haven't cast our line yet, cast it out
         {

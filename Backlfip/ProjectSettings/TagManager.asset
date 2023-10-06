@@ -4,31 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-  - Enemy
-  - Fishies
-  - QTE UI
-  - QTE UI target
   - Floor
   - Underwater
+  - Fishies
   - QTE object
-  - Platform
+  - QTE UI
+  - QTE UI target
   - Enemy
-  - Rock
-  - Juice
-  - Fireball
-  - Lava
-  - Item
-
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - HookCol
+  - 
   - Water
   - UI
-  - Player
   - 
+  - BobberCol
   - 
   - 
   - 
@@ -56,7 +47,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Front
-    uniqueID: 4097487853
     locked: 0

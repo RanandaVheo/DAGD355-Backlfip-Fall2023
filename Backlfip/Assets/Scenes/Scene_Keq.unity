@@ -264,10 +264,14 @@ MonoBehaviour:
   winOrLose: 0
   isFishing: 0
   howManyQTE: 3
+  fishingTimer: 0
+  fishingTimerMax: 4
+  QTEdelayTimer: 2
   scoreTally: 0
   WinCondition: 5
   playerHP: 10
   playerHPMax: 10
+  prevMousePressed: 0
 --- !u!4 &1415031240
 Transform:
   m_ObjectHideFlags: 0
@@ -587,20 +591,20 @@ LineRenderer:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: -1.1365601
+        outSlope: -1.1365601
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.30717486
       - serializedVersion: 3
         time: 1
-        value: 0.35964826
-        inSlope: -2.690059
-        outSlope: -2.690059
+        value: 0.2368379
+        inSlope: -2.9266644
+        outSlope: -2.9266644
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.1023916
+        inWeight: 0.057548583
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -757,7 +761,7 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 136
   m_ForceReceiveLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1360,6 +1364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e8033c43202a94d820e8c83c7726f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerRef: {fileID: 1415031239}
   lineRef: {fileID: 478622244441333597}
   poleRef: {fileID: 6022838895999398489}
   bobberRef: {fileID: 3418563950545014280}
@@ -1403,7 +1408,7 @@ MonoBehaviour:
   winRef: {fileID: 7947203938118340697}
   QTEprefab: {fileID: 1408255709738931272, guid: ba8b6ce59277e274681a92824d06683d, type: 3}
   BasicScoreText: 'Score: '
-  QTEspeed: 5
+  QTEspeed: 4
 --- !u!50 &3418563950545014280
 Rigidbody2D:
   serializedVersion: 4
@@ -1585,7 +1590,7 @@ GameObject:
   - component: {fileID: 4823950373749991367}
   - component: {fileID: 3418563950545014280}
   - component: {fileID: 471611883473142775}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Bobber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2967,7 +2972,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
