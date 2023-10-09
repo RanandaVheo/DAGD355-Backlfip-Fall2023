@@ -11,6 +11,7 @@ public class LavaSlime_NV : MonoBehaviour
     public float speed = 5f;
     public float burnTime = 2f;
     public bool inLava = false;
+    public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float slimeHealth = 7f;
@@ -53,6 +54,7 @@ public class LavaSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Rock")
         {
             slimeHealth--;
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Fireball")
         {
@@ -60,10 +62,15 @@ public class LavaSlime_NV : MonoBehaviour
             Debug.Log("BURN");
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Platform")
+        {
+            animator.SetBool("IsHurt", false);
         }
     }
 

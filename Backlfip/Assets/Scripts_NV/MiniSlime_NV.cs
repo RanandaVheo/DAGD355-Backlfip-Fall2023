@@ -9,6 +9,7 @@ public class MiniSlime_NV : MonoBehaviour
     public GameObject fireJuicePrefab;
     public float speed = 5f;
     public float burnTime = 1f;
+    public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float miniSlimeHealth = 2f;
@@ -43,6 +44,7 @@ public class MiniSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Rock")
         {
             miniSlimeHealth--;
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Fireball")
         {
@@ -50,10 +52,15 @@ public class MiniSlime_NV : MonoBehaviour
             Debug.Log("BURN");
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Platform")
+        {
+            animator.SetBool("IsHurt", false);
         }
     }
 

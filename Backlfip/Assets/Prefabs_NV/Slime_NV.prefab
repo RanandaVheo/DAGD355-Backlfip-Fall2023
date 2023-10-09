@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2039682089797032623}
   - component: {fileID: 2018788708740479672}
   - component: {fileID: 4597298123915086536}
+  - component: {fileID: -8407725129644438398}
   m_Layer: 0
   m_Name: Slime_NV
   m_TagString: Enemy
@@ -163,3 +164,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniSlimePrefab: {fileID: 2624276657588719439, guid: a48e4c22959e6b843809c3ae862c89ba, type: 3}
   speed: 4
+  burnTime: 2
+  inLava: 0
+  animator: {fileID: -8407725129644438398}
+--- !u!95 &-8407725129644438398
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535158563778163743}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 940299e266bbcd848851f538ebe4948f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
