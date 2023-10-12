@@ -79,7 +79,7 @@ public class Shopkeeper_Hank : MonoBehaviour
             foreach (GameObject button in buttons)
             {
                 Canvas tempCanvas = button.GetComponentInChildren<Canvas>();
-                tempCanvas.enabled = !tempCanvas.enabled;
+                tempCanvas.enabled = false;
             }
             
         }

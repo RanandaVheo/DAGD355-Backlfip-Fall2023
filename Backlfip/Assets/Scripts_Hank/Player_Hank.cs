@@ -89,6 +89,11 @@ public class Player_Hank : MonoBehaviour
         animator.SetBool("IsMoving", rb.velocity.x > 1f || rb.velocity.x < -1f);
     }
 
+    public void TakeDamage(float amount)
+    {
+        Debug.Log("Player took damage");
+    }
+
     public void DropFromInventory(GameObject item)
     {
         if (item == null)
