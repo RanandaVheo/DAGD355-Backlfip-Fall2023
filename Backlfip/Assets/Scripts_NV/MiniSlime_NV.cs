@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniSlime_NV : MonoBehaviour
 {
-
+    public AudioSource source;
     GameObject player;
     public GameObject fireJuicePrefab;
     public float speed = 5f;
@@ -44,18 +44,20 @@ public class MiniSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Rock")
         {
             miniSlimeHealth--;
+            source.Play();
             animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Fireball")
         {
             miniSlimeHealth--;
-            Debug.Log("BURN");
+            source.Play();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
             animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
+            source.Play();
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Platform")
@@ -69,7 +71,6 @@ public class MiniSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Lava")
         {
             miniSlimeHealth--;
-            Debug.Log("LAVA");
             Invoke("lavaBurn", 1);
             Invoke("lavaBurn", 2);
             Invoke("lavaBurn", 3);
@@ -79,12 +80,14 @@ public class MiniSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         miniSlimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 
     private void lavaBurn()
     {
         miniSlimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 }

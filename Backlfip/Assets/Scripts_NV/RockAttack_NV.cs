@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RockAttack_NV : MonoBehaviour
 {
-
+    public AudioSource source;
     public GameObject player;
     public GameObject rockPrefab;
     public float rockSpeed = 50f;
@@ -25,6 +25,7 @@ public class RockAttack_NV : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+            source.Play();
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();

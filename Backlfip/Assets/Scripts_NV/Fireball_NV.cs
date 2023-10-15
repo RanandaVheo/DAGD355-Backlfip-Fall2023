@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fireball_NV : MonoBehaviour
 {
 
+    public AudioSource source;
     public GameObject player;
     public GameObject fireballPrefab;
     public float rockSpeed = 75f;
@@ -30,6 +31,7 @@ public class Fireball_NV : MonoBehaviour
             Vector2 direction = difference / distance;
             direction.Normalize();
             fireball(direction);
+            source.Play();
         }
  
     }

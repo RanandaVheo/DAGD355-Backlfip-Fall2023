@@ -6,6 +6,7 @@ using UnityEngine;
 public class LavaSlime_NV : MonoBehaviour
 {
 
+    public AudioSource source;
     GameObject player;
     public GameObject miniSlimePrefab;
     public float speed = 5f;
@@ -55,17 +56,19 @@ public class LavaSlime_NV : MonoBehaviour
         {
             slimeHealth--;
             animator.SetBool("IsHurt", true);
+            source.Play();
         }
         if (collision.gameObject.tag == "Fireball")
         {
             slimeHealth--;
-            Debug.Log("BURN");
+            source.Play();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
             animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
+            source.Play();
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Platform")
@@ -79,7 +82,6 @@ public class LavaSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Lava" )
         {
             slimeHealth--;
-            Debug.Log("LAVA");
             Invoke("lavaBurn", 1);
             Invoke("lavaBurn", 2);
             Invoke("lavaBurn", 3);
@@ -89,12 +91,14 @@ public class LavaSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         slimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 
     private void lavaBurn()
     {
         slimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 }
