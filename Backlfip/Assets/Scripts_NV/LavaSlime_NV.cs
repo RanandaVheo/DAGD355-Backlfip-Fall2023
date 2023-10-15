@@ -9,6 +9,7 @@ public class LavaSlime_NV : MonoBehaviour
     public AudioSource source;
     GameObject player;
     public GameObject miniSlimePrefab;
+    public GameObject slimeSplit;
     public float speed = 5f;
     public float burnTime = 2f;
     public bool inLava = false;
@@ -31,6 +32,7 @@ public class LavaSlime_NV : MonoBehaviour
 
         if(slimeHealth == 0)
         {
+            spawnSlimeSplit();
             spawnMiniSlime1();
             spawnMiniSlime2();
             Destroy(gameObject);
@@ -48,6 +50,12 @@ public class LavaSlime_NV : MonoBehaviour
     {
         GameObject m = Instantiate(miniSlimePrefab) as GameObject;
         m.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
+    }
+
+    private void spawnSlimeSplit()
+    {
+        GameObject s = Instantiate(slimeSplit) as GameObject;
+        s.transform.position = new Vector2(transform.position.x, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: -5055233691436949666}
   fireJuicePrefab: {fileID: 6150765940916408923, guid: 36907e40c85ad294bafbecb5d4721f42, type: 3}
+  miniSlimeSplit: {fileID: 6867323384726403893, guid: 6ce464d5d67d1604fb285d2cca9833d3, type: 3}
   speed: 5
   burnTime: 1
   animator: {fileID: 5418347932885130032}

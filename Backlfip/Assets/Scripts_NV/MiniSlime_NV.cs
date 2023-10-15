@@ -7,6 +7,7 @@ public class MiniSlime_NV : MonoBehaviour
     public AudioSource source;
     GameObject player;
     public GameObject fireJuicePrefab;
+    public GameObject miniSlimeSplit;
     public float speed = 5f;
     public float burnTime = 1f;
     public Animator animator;
@@ -28,6 +29,7 @@ public class MiniSlime_NV : MonoBehaviour
 
         if (miniSlimeHealth == 0)
         {
+            spawnSlimeSplit();
             spawnFireJuice();
             Destroy(gameObject);
         }
@@ -37,6 +39,11 @@ public class MiniSlime_NV : MonoBehaviour
     {
         GameObject j = Instantiate(fireJuicePrefab) as GameObject;
         j.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
+    }
+    private void spawnSlimeSplit()
+    {
+        GameObject m = Instantiate(miniSlimeSplit) as GameObject;
+        m.transform.position = new Vector2(transform.position.x, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

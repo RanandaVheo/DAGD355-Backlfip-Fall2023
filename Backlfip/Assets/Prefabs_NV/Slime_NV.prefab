@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 134684193565397415}
   miniSlimePrefab: {fileID: 2624276657588719439, guid: a48e4c22959e6b843809c3ae862c89ba, type: 3}
+  slimeSplit: {fileID: 6867323384726403893, guid: c3f4754ad85e8294d9b98f8bda0a5065, type: 3}
   speed: 4
   burnTime: 2
   inLava: 0
