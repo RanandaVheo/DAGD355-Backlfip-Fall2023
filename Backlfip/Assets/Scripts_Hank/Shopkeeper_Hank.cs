@@ -23,7 +23,7 @@ public class Shopkeeper_Hank : MonoBehaviour
         Debug.Log(shopCanvas == null);
         for (int i = 0; i < 5; i++)
         {
-            GameObject tempPurchaseableButton = Instantiate(purchaseableButtonPrefab, shopCanvas.transform.position, Quaternion.identity);
+            GameObject tempPurchaseableButton = Instantiate(purchaseableButtonPrefab, shopCanvas.transform.position, Quaternion.identity, shopCanvas.transform);
             tempPurchaseableButton.transform.parent = shopCanvas.transform.parent;
             tempPurchaseableButton.transform.position = new Vector3(shopCanvas.transform.position.x - 2.2f + i * 1.1f, shopCanvas.transform.position.y, 1);
             buttons.Add(tempPurchaseableButton);
@@ -74,12 +74,12 @@ public class Shopkeeper_Hank : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            indicatorRenderer.enabled = false; 
-            shopCanvas.enabled = !shopCanvas.enabled;
+            indicatorRenderer.enabled = false;
+            shopCanvas.enabled = false;
             foreach (GameObject button in buttons)
             {
                 Canvas tempCanvas = button.GetComponentInChildren<Canvas>();
-                tempCanvas.enabled = !tempCanvas.enabled;
+                tempCanvas.enabled = false;
             }
             
         }

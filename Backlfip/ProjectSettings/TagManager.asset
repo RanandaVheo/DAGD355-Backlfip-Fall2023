@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Fireball
+  - Fishies
+  - Juice
+  - Lava
+  - Rock
+  - Item
   - Floor
   - Underwater
   - Fishies
@@ -47,4 +53,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WorldSpaceUI
+    uniqueID: 1079940413
     locked: 0
