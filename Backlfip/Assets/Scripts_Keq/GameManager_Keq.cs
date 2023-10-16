@@ -16,9 +16,6 @@ public class GameManager_Keq : MonoBehaviour
     public int scoreTally = 0;
     public int WinCondition = 5;
 
-    public int playerHP = 10;
-    public int playerHPMax = 10;
-
     public bool prevMousePressed = false;
 
     //public GameObject QTEprefab;
@@ -28,14 +25,12 @@ public class GameManager_Keq : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerHP = playerHPMax;
         fishingTimer = fishingTimerMax;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerHP < 0) winOrLose = true;
 
         if (!isGameOver)
         {
@@ -46,5 +41,10 @@ public class GameManager_Keq : MonoBehaviour
         if (scoreTally >= WinCondition || winOrLose) isGameOver = true;
 
         prevMousePressed = Input.GetMouseButtonDown(0);
+    }
+
+    public void GameLost()
+    {
+        winOrLose = true;
     }
 }

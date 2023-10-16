@@ -12,15 +12,11 @@ public class UIManager_Keq : MonoBehaviour
 
     public GameManager_Keq managerRef;
     public TMPro.TextMeshProUGUI scoreRef;
-    public RectTransform HPbar;
     public GameObject loseRef, winRef;
     public GameObject QTEprefab;
     public string BasicScoreText = "Score: "; //the score text that is displayed all the time
     public float QTEspeed = 5f;
 
-    private float HP_WIDTH_START = 1f; //this will store the starting sizeDelta for math reasons
-    private float HP_WIDTH_INC = 1f; //this will store math for how wide one section of HP bar should be
-    private Vector2 barScale = new Vector2(1f, 1f); //we need a Vector2 to adjust the sizeDelta, can't just change sizeDelta.x
     private int prevScoreTally = 0;
     private Vector2 QTEsizeDelta;
     private int QTEcount = 0;
@@ -35,11 +31,6 @@ public class UIManager_Keq : MonoBehaviour
     {
         scoreRef.text = BasicScoreText + managerRef.scoreTally; //we start with 0 points but still need to show that
 
-        //these are for the HP bar's math
-        barScale = HPbar.sizeDelta;
-        HP_WIDTH_START = barScale.x;
-        HP_WIDTH_INC = (HPbar.rect.width + HP_WIDTH_START) / managerRef.playerHPMax;
-
         QTE_RectHolder = new RectTransform[managerRef.howManyQTE]; //Array to easily pass around all QTE rects when needed
         QTE_TargetHolder = new RectTransform[managerRef.howManyQTE]; //Array to easily pass around all QTE targets when needed
 
@@ -50,9 +41,6 @@ public class UIManager_Keq : MonoBehaviour
     
     void Update()
     {
-
-        playerHealthBar(managerRef.playerHP);
-
         //if we are fishing
         if (managerRef.isFishing)
         {
@@ -89,18 +77,6 @@ public class UIManager_Keq : MonoBehaviour
 
         prevScoreTally = managerRef.scoreTally;
         prevMousePressed = Input.GetMouseButtonDown(0);
-    }
-
-    //Used to update the health bar based on player HP
-    private void playerHealthBar(int currHP)
-    {
-        //how many hp incriments we need, based on current player HP
-        int playerRatio = (managerRef.playerHPMax - currHP);
-
-        //if the player's HP is below 0 it's still just zero and the bar shouldn't get negative scale
-        if (managerRef.playerHP >= 0) barScale.x = HP_WIDTH_START - (HP_WIDTH_INC * playerRatio);
-
-        HPbar.sizeDelta = barScale; //set scale
     }
 
     //this function animates the ring around QTE targets
