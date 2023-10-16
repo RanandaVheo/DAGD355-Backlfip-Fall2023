@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MiniSlime_NV : MonoBehaviour
 {
-
+    public AudioSource source;
     GameObject player;
     public GameObject fireJuicePrefab;
+    public GameObject miniSlimeSplit;
     public float speed = 5f;
     public float burnTime = 1f;
+    public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float miniSlimeHealth = 2f;
@@ -27,6 +29,7 @@ public class MiniSlime_NV : MonoBehaviour
 
         if (miniSlimeHealth == 0)
         {
+            spawnSlimeSplit();
             spawnFireJuice();
             Destroy(gameObject);
         }
@@ -37,23 +40,36 @@ public class MiniSlime_NV : MonoBehaviour
         GameObject j = Instantiate(fireJuicePrefab) as GameObject;
         j.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
     }
+    private void spawnSlimeSplit()
+    {
+        GameObject m = Instantiate(miniSlimeSplit) as GameObject;
+        m.transform.position = new Vector2(transform.position.x, transform.position.y);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Rock")
         {
             miniSlimeHealth--;
+            source.Play();
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Fireball")
         {
             miniSlimeHealth--;
-            Debug.Log("BURN");
+            source.Play();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
+            source.Play();
             Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Platform")
+        {
+            animator.SetBool("IsHurt", false);
         }
     }
 
@@ -62,7 +78,6 @@ public class MiniSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Lava")
         {
             miniSlimeHealth--;
-            Debug.Log("LAVA");
             Invoke("lavaBurn", 1);
             Invoke("lavaBurn", 2);
             Invoke("lavaBurn", 3);
@@ -72,12 +87,14 @@ public class MiniSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         miniSlimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 
     private void lavaBurn()
     {
         miniSlimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 }
