@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove_Keq : MonoBehaviour
 {
     public GameManager_Keq managerRef;
+    public HPBar_Keq HPBarRef;
     public float speed = 10f;
 
     private Rigidbody2D rb;
@@ -37,7 +38,7 @@ public class PlayerMove_Keq : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            managerRef.playerHP--;
+            HPBarRef.changeHPBar(true, 1);
             Destroy(collision.gameObject);
         }
 
@@ -49,8 +50,7 @@ public class PlayerMove_Keq : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Fishies"))
         {
-            managerRef.playerHP++;
-            managerRef.scoreTally++;
+            HPBarRef.changeHPBar(false, 1);
             Destroy(collision.gameObject);
         }
         
