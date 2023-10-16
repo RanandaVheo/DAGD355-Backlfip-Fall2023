@@ -8,6 +8,8 @@ public class Fireball_NV : MonoBehaviour
     public AudioSource source;
     public GameObject player;
     public GameObject fireballPrefab;
+    public float fireballCooldown = 2;
+    public bool fireballOnCooldown = false;
     public float rockSpeed = 75f;
     private Vector3 target;
 
@@ -23,17 +25,26 @@ public class Fireball_NV : MonoBehaviour
         target = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
         Vector2 difference = target - player.transform.position;
-        
-        if (Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(1) && fireballOnCooldown == false)
         {
             // NEED TO ADD: CHECK IF PLAYER HAS ENOUGH FIRE JUICE
+            fireballOnCooldown = true;
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
             fireball(direction);
             source.Play();
         }
- 
+        if (fireballOnCooldown)
+        {
+            fireballCooldown -= 1 * Time.deltaTime;
+            if (fireballCooldown <= 0)
+            {
+                fireballCooldown = 2;
+                fireballOnCooldown = false;
+            }
+        }
     }
 
     void fireball(Vector2 direction)
