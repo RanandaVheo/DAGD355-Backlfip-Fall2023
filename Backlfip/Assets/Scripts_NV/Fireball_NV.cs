@@ -5,8 +5,11 @@ using UnityEngine;
 public class Fireball_NV : MonoBehaviour
 {
 
+    public AudioSource source;
     public GameObject player;
     public GameObject fireballPrefab;
+    public float fireballCooldown = 2;
+    public bool fireballOnCooldown = false;
     public float rockSpeed = 75f;
     private Vector3 target;
 
@@ -19,27 +22,35 @@ public class Fireball_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
+        target = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
-        Vector3 difference = target - player.transform.position;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        player.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        Vector2 difference = target - player.transform.position;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && fireballOnCooldown == false)
         {
             // NEED TO ADD: CHECK IF PLAYER HAS ENOUGH FIRE JUICE
+            fireballOnCooldown = true;
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
-            fireball(direction, rotationZ);
+            fireball(direction);
+            source.Play();
+        }
+        if (fireballOnCooldown)
+        {
+            fireballCooldown -= 1 * Time.deltaTime;
+            if (fireballCooldown <= 0)
+            {
+                fireballCooldown = 2;
+                fireballOnCooldown = false;
+            }
         }
     }
 
-    void fireball(Vector2 direction, float rotationZ)
+    void fireball(Vector2 direction)
     {
         GameObject f = Instantiate(fireballPrefab) as GameObject;
         f.transform.position = player.transform.position;
-        f.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         f.GetComponent<Rigidbody2D>().velocity = direction * rockSpeed;
     }
 }

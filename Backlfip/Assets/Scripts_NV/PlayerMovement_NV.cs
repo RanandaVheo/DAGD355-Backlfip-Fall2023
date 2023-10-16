@@ -8,13 +8,15 @@ public class PlayerMovement_NV : MonoBehaviour
     public float speed;
     public float fireJuice = 5f;
     public float lavaTime = 1f;
+    public Animator animator;
     private Rigidbody2D rb;
     private bool grounded = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -22,8 +24,10 @@ public class PlayerMovement_NV : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+        animator.SetFloat("Speed", Mathf.Abs(h));
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            animator.SetBool("IsJumping", true);
             if (grounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 5f);
@@ -39,13 +43,38 @@ public class PlayerMovement_NV : MonoBehaviour
             rb.velocity = new Vector2(h * speed, rb.velocity.y);
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetBool("IsAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("IsAttacking", false);
+        }
+
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetBool("IsAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("IsAttacking", false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Platform")
         {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsDamaged", false);
+            animator.SetBool("IsAttacking", false);
             grounded = true;
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            animator.SetBool("IsDamaged", true);
         }
     }
 

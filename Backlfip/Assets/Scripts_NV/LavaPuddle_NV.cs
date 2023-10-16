@@ -7,6 +7,8 @@ public class LavaPuddle_NV : MonoBehaviour
 
     public GameObject player;
     public GameObject lavaPuddlePrefab;
+    public float lavaPuddleCooldown = 5;
+    public bool lavaOnCooldown = false;
     private Vector3 target;
 
     // Start is called before the first frame update
@@ -20,10 +22,20 @@ public class LavaPuddle_NV : MonoBehaviour
     {
         target = new Vector2(player.transform.position.x, player.transform.position.y - 0.75f);
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && lavaOnCooldown == false)
         {
             // NEED TO ADD: CHECK IF PLAYER HAS ENOUGH FIRE JUICE
+            lavaOnCooldown = true;
             lavaPuddle();
+        }
+        if (lavaOnCooldown)
+        {
+            lavaPuddleCooldown -= 1 * Time.deltaTime;
+            if (lavaPuddleCooldown <= 0)
+            {
+                lavaPuddleCooldown = 5;
+                lavaOnCooldown = false;
+            }
         }
     }
 

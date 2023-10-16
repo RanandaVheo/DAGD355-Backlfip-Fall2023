@@ -6,11 +6,14 @@ using UnityEngine;
 public class LavaSlime_NV : MonoBehaviour
 {
 
+    public AudioSource source;
     GameObject player;
     public GameObject miniSlimePrefab;
+    public GameObject slimeSplit;
     public float speed = 5f;
     public float burnTime = 2f;
     public bool inLava = false;
+    public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float slimeHealth = 7f;
@@ -29,6 +32,7 @@ public class LavaSlime_NV : MonoBehaviour
 
         if(slimeHealth == 0)
         {
+            spawnSlimeSplit();
             spawnMiniSlime1();
             spawnMiniSlime2();
             Destroy(gameObject);
@@ -48,22 +52,36 @@ public class LavaSlime_NV : MonoBehaviour
         m.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
     }
 
+    private void spawnSlimeSplit()
+    {
+        GameObject s = Instantiate(slimeSplit) as GameObject;
+        s.transform.position = new Vector2(transform.position.x, transform.position.y);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Rock")
         {
             slimeHealth--;
+            animator.SetBool("IsHurt", true);
+            source.Play();
         }
         if (collision.gameObject.tag == "Fireball")
         {
             slimeHealth--;
-            Debug.Log("BURN");
+            source.Play();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
+            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
+            source.Play();
             Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Platform")
+        {
+            animator.SetBool("IsHurt", false);
         }
     }
 
@@ -72,7 +90,6 @@ public class LavaSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Lava" )
         {
             slimeHealth--;
-            Debug.Log("LAVA");
             Invoke("lavaBurn", 1);
             Invoke("lavaBurn", 2);
             Invoke("lavaBurn", 3);
@@ -82,12 +99,14 @@ public class LavaSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         slimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 
     private void lavaBurn()
     {
         slimeHealth--;
+        source.Play();
         Debug.Log("BURNING");
     }
 }
