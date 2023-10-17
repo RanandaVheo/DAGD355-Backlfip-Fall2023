@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove_Keq : MonoBehaviour
+public class Player_Keq : MonoBehaviour
 {
     public GameManager_Keq managerRef;
     public HPBar_Keq HPBarRef;
