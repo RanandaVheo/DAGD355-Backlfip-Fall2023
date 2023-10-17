@@ -69,9 +69,6 @@ public class Player_Hank : MonoBehaviour
             {
                 rb.AddForce(Vector2.up * 100);
             }
-            {
-                
-            }
         }
 
         attackingAnimationTimer.Update();
