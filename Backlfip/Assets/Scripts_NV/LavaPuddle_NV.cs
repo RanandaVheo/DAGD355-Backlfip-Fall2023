@@ -20,7 +20,7 @@ public class LavaPuddle_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = new Vector2(player.transform.position.x, player.transform.position.y + 1.7f);
+        target = new Vector2(player.transform.position.x, player.transform.position.y + 1.75f);
 
         if (Input.GetKeyDown(KeyCode.Q) && lavaOnCooldown == false)
         {
