@@ -10,7 +10,8 @@ public class Fireball_NV : MonoBehaviour
     public GameObject fireballPrefab;
     public float fireballCooldown = 2;
     public bool fireballOnCooldown = false;
-    public float rockSpeed = 75f;
+    public float fireballSpeed = 50f;
+    public float lifetime = 2f;
     private Vector3 target;
 
     // Start is called before the first frame update
@@ -51,6 +52,7 @@ public class Fireball_NV : MonoBehaviour
     {
         GameObject f = Instantiate(fireballPrefab) as GameObject;
         f.transform.position = player.transform.position;
-        f.GetComponent<Rigidbody2D>().velocity = direction * rockSpeed;
+        f.GetComponent<Rigidbody2D>().velocity = direction * fireballSpeed;
+        Destroy(f, lifetime);
     }
 }

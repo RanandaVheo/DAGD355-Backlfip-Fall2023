@@ -16,7 +16,7 @@ public class LavaSlime_NV : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float slimeHealth = 7f;
+    private float slimeHealth = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -68,11 +68,9 @@ public class LavaSlime_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Fireball")
         {
-            slimeHealth--;
-            source.Play();
+            burnDamage();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
-            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -87,26 +85,25 @@ public class LavaSlime_NV : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Lava" )
+        if (collision.gameObject.tag == "Lava")
         {
-            slimeHealth--;
-            Invoke("lavaBurn", 1);
-            Invoke("lavaBurn", 2);
-            Invoke("lavaBurn", 3);
+            burnDamage();
+            Invoke("burnDamage", 0.5f);
+            Invoke("burnDamage", 1);
         }
     }
 
     private void burnDamage()
     {
-        slimeHealth--;
         animator.SetBool("IsHurt", true);
+        slimeHealth--;
         source.Play();
     }
 
-    private void lavaBurn()
+    private void lavaDamage()
     {
-        slimeHealth--;
         animator.SetBool("IsHurt", true);
+        slimeHealth--;
         source.Play();
     }
 }

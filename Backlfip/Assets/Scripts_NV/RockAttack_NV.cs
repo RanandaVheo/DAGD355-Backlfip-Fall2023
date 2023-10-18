@@ -7,7 +7,8 @@ public class RockAttack_NV : MonoBehaviour
     public AudioSource source;
     public GameObject player;
     public GameObject rockPrefab;
-    public float rockSpeed = 50f;
+    public float rockSpeed = 35f;
+    public float lifetime = 2f;
     private Vector3 target;
 
     // Start is called before the first frame update
@@ -39,5 +40,6 @@ public class RockAttack_NV : MonoBehaviour
         GameObject r = Instantiate(rockPrefab) as GameObject;
         r.transform.position = player.transform.position;
         r.GetComponent<Rigidbody2D>().velocity = direction * rockSpeed;
+        Destroy(r, lifetime);
     }
 }

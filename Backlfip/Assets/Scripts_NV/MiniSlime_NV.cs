@@ -13,7 +13,7 @@ public class MiniSlime_NV : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float miniSlimeHealth = 2f;
+    private float miniSlimeHealth = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -56,11 +56,9 @@ public class MiniSlime_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Fireball")
         {
-            miniSlimeHealth--;
-            source.Play();
+            burnDamage();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
-            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -77,24 +75,23 @@ public class MiniSlime_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Lava")
         {
-            miniSlimeHealth--;
-            Invoke("lavaBurn", 1);
-            Invoke("lavaBurn", 2);
-            Invoke("lavaBurn", 3);
+            burnDamage();
+            Invoke("burnDamage", 0.5f);
+            Invoke("burnDamage", 1);
         }
     }
 
     private void burnDamage()
     {
-        miniSlimeHealth--;
         animator.SetBool("IsHurt", true);
+        miniSlimeHealth--;
         source.Play();
     }
 
-    private void lavaBurn()
+    private void lavaDamage()
     {
-        miniSlimeHealth--;
         animator.SetBool("IsHurt", true);
+        miniSlimeHealth--;
         source.Play();
     }
 }

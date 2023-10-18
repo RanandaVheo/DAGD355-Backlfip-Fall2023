@@ -32,7 +32,12 @@ public class RockCollision_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Platform")
         {
-            Destroy(gameObject);
+            Invoke("attackGrounded", 0.5f);
         }
+    }
+
+    private void attackGrounded()
+    {
+        Destroy(gameObject);
     }
 }
