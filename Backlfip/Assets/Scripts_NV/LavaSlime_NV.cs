@@ -99,14 +99,14 @@ public class LavaSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         slimeHealth--;
+        animator.SetBool("IsHurt", true);
         source.Play();
-        Debug.Log("BURNING");
     }
 
     private void lavaBurn()
     {
         slimeHealth--;
+        animator.SetBool("IsHurt", true);
         source.Play();
-        Debug.Log("BURNING");
     }
 }

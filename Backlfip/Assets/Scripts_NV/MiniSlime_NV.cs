@@ -87,14 +87,14 @@ public class MiniSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         miniSlimeHealth--;
+        animator.SetBool("IsHurt", true);
         source.Play();
-        Debug.Log("BURNING");
     }
 
     private void lavaBurn()
     {
         miniSlimeHealth--;
+        animator.SetBool("IsHurt", true);
         source.Play();
-        Debug.Log("BURNING");
     }
 }
