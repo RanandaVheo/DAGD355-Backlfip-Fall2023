@@ -8,6 +8,8 @@ public class PlayerMovement_NV : MonoBehaviour
     public float speed;
     public float fireJuice = 5f;
     public float lavaTime = 1f;
+    public bool isDamaged;
+    public bool isAttacking;
     public Animator animator;
     private Rigidbody2D rb;
     private bool grounded = true;
@@ -45,21 +47,37 @@ public class PlayerMovement_NV : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            isAttacking = true;
             animator.SetBool("IsAttacking", true);
         }
         else
         {
+            isAttacking = false;
             animator.SetBool("IsAttacking", false);
         }
 
 
         if (Input.GetMouseButtonDown(1))
         {
+            isAttacking = true;
             animator.SetBool("IsAttacking", true);
         }
         else
         {
+            isAttacking = false;
             animator.SetBool("IsAttacking", false);
+        }
+
+        if (isDamaged == true)
+        {
+            Invoke("animationUpdate", 0.1f);
+            isDamaged = false;
+        }
+
+        if (isAttacking == true)
+        {
+            Invoke("animationUpdate", 0.1f);
+            isAttacking = false;
         }
     }
 
@@ -68,12 +86,12 @@ public class PlayerMovement_NV : MonoBehaviour
         if(collision.gameObject.tag == "Platform")
         {
             animator.SetBool("IsJumping", false);
-            animator.SetBool("IsDamaged", false);
-            animator.SetBool("IsAttacking", false);
             grounded = true;
         }
         if (collision.gameObject.tag == "Enemy")
         {
+            isDamaged = true;
+            Debug.Log("DAMAGE");
             animator.SetBool("IsDamaged", true);
         }
     }
@@ -97,5 +115,11 @@ public class PlayerMovement_NV : MonoBehaviour
     {
         fireJuice++;
         Debug.Log("MORE JUICE");
+    }
+
+    private void animationUpdate()
+    {
+        animator.SetBool("IsDamaged", false);
+        animator.SetBool("IsAttacking", false);
     }
 }
