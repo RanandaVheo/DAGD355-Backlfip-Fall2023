@@ -16,7 +16,7 @@ public class LavaSlime_NV : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float slimeHealth = 7f;
+    private float slimeHealth = 5f;
 
     // Start is called before the first frame update
     void Start()

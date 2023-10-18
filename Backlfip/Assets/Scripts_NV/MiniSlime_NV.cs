@@ -13,7 +13,7 @@ public class MiniSlime_NV : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float miniSlimeHealth = 2f;
+    private float miniSlimeHealth = 1f;
 
     // Start is called before the first frame update
     void Start()

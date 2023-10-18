@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement_NV : MonoBehaviour
 {
 
     public float speed;
-    public float fireJuice = 5f;
+    public float fireJuice = 5;
     public float lavaTime = 1f;
     public bool isDamaged;
     public bool isAttacking;
     public Animator animator;
+    public TextMeshProUGUI fireJuiceUI;
     private Rigidbody2D rb;
     private bool grounded = true;
 
@@ -24,6 +27,8 @@ public class PlayerMovement_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fireJuiceUI.text = fireJuice.ToString();
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         animator.SetFloat("Speed", Mathf.Abs(h));
@@ -101,21 +106,17 @@ public class PlayerMovement_NV : MonoBehaviour
         if (collision.gameObject.tag == "Juice")
         {
             fireJuice++;
-            Debug.Log("MORE JUICE!");
-        }
-        if (collision.gameObject.tag == "Lava")
-        {
-            Invoke("inLava", 1);
-            Invoke("inLava", 2);
-            Invoke("inLava", 3);
         }
     }
 
-    private void inLava()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        fireJuice++;
-        Debug.Log("MORE JUICE");
+        if (collision.gameObject.tag == "Lava")
+        {
+            fireJuice += 1 * Time.deltaTime;
+        }
     }
+
 
     private void animationUpdate()
     {
