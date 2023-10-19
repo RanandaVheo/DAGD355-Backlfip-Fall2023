@@ -81,7 +81,7 @@ public class PlayerMovement_NV : MonoBehaviour
             isAttacking = false;
         }
 
-        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(10 * Time.deltaTime);
+        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(2 * Time.deltaTime);
         tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         
         if(GameManager_NV.gameManagerNV.playerTemp.Temp <= 0)
@@ -114,9 +114,9 @@ public class PlayerMovement_NV : MonoBehaviour
             GameManager_NV.gameManagerNV.playerTemp.HealUnit(5);
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         }
-        if (collision.gameObject.tag == "Refresh")
+        if (collision.gameObject.tag == "Coin")
         {
-
+            // ADD COINS
         }
     }
 

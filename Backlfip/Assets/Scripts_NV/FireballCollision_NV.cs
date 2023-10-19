@@ -44,6 +44,10 @@ public class FireballCollision_NV : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "Spawner")
         {
             Destroy(gameObject);

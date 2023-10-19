@@ -10,6 +10,7 @@ public class Fireball_NV : MonoBehaviour
     public GameObject player;
     public GameObject fireballPrefab;
     public Transform fireballTransform;
+    public float lifetime = 2f;
     private Rigidbody2D rb;
     private Camera mainCam;
     public float fireballCooldown = 2;
@@ -40,6 +41,7 @@ public class Fireball_NV : MonoBehaviour
             GameManager_NV.gameManagerNV.playerTemp.DamageUnit(10);
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
             source.Play();
+            Destroy(rb, lifetime);
         }
         if (fireballOnCooldown)
         {
