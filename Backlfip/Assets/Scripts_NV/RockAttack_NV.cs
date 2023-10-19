@@ -9,6 +9,7 @@ public class RockAttack_NV : MonoBehaviour
     public GameObject player;
     public GameObject rockPrefab;
     public Transform rockTransform;
+    public float lifetime = 2f;
     private Rigidbody2D rb;
     private Camera mainCam;
     private Vector3 mousePos;
@@ -34,6 +35,7 @@ public class RockAttack_NV : MonoBehaviour
         {
             Instantiate(rockPrefab, rockTransform.position, Quaternion.identity);
             source.Play();
+            Destroy(rb, lifetime);
         }
     }
 }
