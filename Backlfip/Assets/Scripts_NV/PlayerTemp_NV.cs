@@ -7,6 +7,7 @@ public class PlayerTemp
     float currentTemp;
     float currentMaxTemp;
 
+
     public float Temp
     {
         get

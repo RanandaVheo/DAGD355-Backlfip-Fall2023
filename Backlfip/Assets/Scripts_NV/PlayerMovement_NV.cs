@@ -81,8 +81,14 @@ public class PlayerMovement_NV : MonoBehaviour
             isAttacking = false;
         }
 
-        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(1 * Time.deltaTime);
+        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(10 * Time.deltaTime);
         tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+        
+        if(GameManager_NV.gameManagerNV.playerTemp.Temp <= 0)
+        {
+            // GAME OVER
+            Debug.Log("GAME OVER");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
