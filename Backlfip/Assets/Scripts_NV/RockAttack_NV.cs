@@ -10,7 +10,6 @@ public class RockAttack_NV : MonoBehaviour
     public GameObject rockPrefab;
     public Transform rockTransform;
     private Rigidbody2D rb;
-    public float lifetime = 2f;
     private Camera mainCam;
     private Vector3 mousePos;
 

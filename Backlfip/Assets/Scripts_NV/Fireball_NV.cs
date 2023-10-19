@@ -9,32 +9,36 @@ public class Fireball_NV : MonoBehaviour
     public AudioSource source;
     public GameObject player;
     public GameObject fireballPrefab;
+    public Transform fireballTransform;
+    private Rigidbody2D rb;
+    private Camera mainCam;
     public float fireballCooldown = 2;
     public bool fireballOnCooldown = false;
-    public float fireballSpeed = 50f;
-    public float lifetime = 2f;
-    private Vector3 target;
+    private Vector3 mousePos;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        mainCam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        target = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 difference = target - player.transform.position;
+        Vector3 rotation = mousePos - transform.position;
+
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
         if (Input.GetMouseButtonDown(1) && fireballOnCooldown == false)
         {
             fireballOnCooldown = true;
-            float distance = difference.magnitude;
-            Vector2 direction = difference / distance;
-            direction.Normalize();
-            fireball(direction);
+            Instantiate(fireballPrefab, fireballTransform.position, Quaternion.identity);
+            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(10);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
             source.Play();
         }
         if (fireballOnCooldown)
@@ -46,15 +50,5 @@ public class Fireball_NV : MonoBehaviour
                 fireballOnCooldown = false;
             }
         }
-    }
-
-    void fireball(Vector2 direction)
-    {
-        GameObject f = Instantiate(fireballPrefab) as GameObject;
-        f.transform.position = player.transform.position;
-        f.GetComponent<Rigidbody2D>().velocity = direction * fireballSpeed;
-        Destroy(f, lifetime);
-        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(10);
-        tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
     }
 }
