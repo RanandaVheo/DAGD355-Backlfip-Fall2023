@@ -7,6 +7,7 @@ public class SlimeSpawner_NV : MonoBehaviour
 
     public GameObject lavaSlimePrefab;
     public float respawnTime = 5f;
+    public float spawnerHealth = 25f;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -19,7 +20,10 @@ public class SlimeSpawner_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(spawnerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void spawnSlime()
@@ -34,6 +38,18 @@ public class SlimeSpawner_NV : MonoBehaviour
         {
             yield return new WaitForSeconds(respawnTime);
             spawnSlime();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Rock")
+        {
+            spawnerHealth -= 1;
+        }
+        if (collision.gameObject.tag == "Fireball")
+        {
+            spawnerHealth -= 3;
         }
     }
 }

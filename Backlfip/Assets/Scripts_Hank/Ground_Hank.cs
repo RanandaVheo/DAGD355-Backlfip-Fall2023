@@ -16,7 +16,6 @@ public class Ground_Hank : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = originalSprite;
         Tilemap tilemap = FindAnyObjectByType<Tilemap>();
         transform.position = tilemap.GetCellCenterWorld(new Vector3Int((int) transform.position.x, (int) transform.position.y, (int) transform.position.z));
     }
@@ -30,6 +29,10 @@ public class Ground_Hank : MonoBehaviour
     {
         spriteRenderer.sprite = waterSprite;
     }
+    public void Capture()
+    {
+        spriteRenderer.sprite = originalSprite;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -37,10 +40,16 @@ public class Ground_Hank : MonoBehaviour
         {
             case "Player":
 
+                Capture();
+                
+                break;
+
+            case "FireEnemy":
+
                 Burn();
                 break;
 
-            case "Enemy":
+            case "WaterEnemy":
 
                 Hydrate();
                 break;

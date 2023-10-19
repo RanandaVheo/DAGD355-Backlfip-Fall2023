@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager_NV : MonoBehaviour
 {
+
     public static GameManager_NV gameManagerNV { get; private set; }
 
     public PlayerTemp playerTemp = new PlayerTemp(100, 100);
