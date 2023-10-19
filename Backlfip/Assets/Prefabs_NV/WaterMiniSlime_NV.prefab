@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 6994010911285153870}
   - component: {fileID: 4395232849315774659}
   - component: {fileID: 4862313199156066281}
-  - component: {fileID: 7560164880595190855}
   - component: {fileID: 5418347932885130032}
   - component: {fileID: -5055233691436949666}
+  - component: {fileID: -7046136433211790719}
   m_Layer: 0
-  m_Name: MiniSlime_NV
+  m_Name: WaterMiniSlime_NV
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.050980393, a: 1}
+  m_Color: {r: 0.011764706, g: 0.15686275, b: 0.6901961, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -151,24 +151,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7560164880595190855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba34df158349a2e41afe6dfea8708db6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: -5055233691436949666}
-  fireJuicePrefab: {fileID: 6150765940916408923, guid: 36907e40c85ad294bafbecb5d4721f42, type: 3}
-  miniSlimeSplit: {fileID: 6867323384726403893, guid: 6ce464d5d67d1604fb285d2cca9833d3, type: 3}
-  speed: 5
-  burnTime: 1
-  animator: {fileID: 5418347932885130032}
 --- !u!95 &5418347932885130032
 Animator:
   serializedVersion: 5
@@ -179,7 +161,7 @@ Animator:
   m_GameObject: {fileID: 2624276657588719439}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 940299e266bbcd848851f538ebe4948f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 68a99eef3b59b6545b261b43de9d81be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -286,3 +268,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7046136433211790719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624276657588719439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcef023e07e0e240ad6eaf297e01a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: -5055233691436949666}
+  coinPrefab: {fileID: 6150765940916408923, guid: d1e10e0bef399d445b8731f875bb897a, type: 3}
+  miniSlimeSplit: {fileID: 6867323384726403893, guid: e722595cc007feb46a5d6ad3119e3b22, type: 3}
+  speed: 5
+  burnTime: 1
+  animator: {fileID: 5418347932885130032}

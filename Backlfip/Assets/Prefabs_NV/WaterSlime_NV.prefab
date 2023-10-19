@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2624276657588719439
+--- !u!1 &7535158563778163743
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2298176473986699054}
-  - component: {fileID: 6994010911285153870}
-  - component: {fileID: 4395232849315774659}
-  - component: {fileID: 4862313199156066281}
-  - component: {fileID: 7560164880595190855}
-  - component: {fileID: 5418347932885130032}
-  - component: {fileID: -5055233691436949666}
+  - component: {fileID: 2919528434104879618}
+  - component: {fileID: 8946899271825308492}
+  - component: {fileID: 2039682089797032623}
+  - component: {fileID: 2018788708740479672}
+  - component: {fileID: -8407725129644438398}
+  - component: {fileID: 134684193565397415}
+  - component: {fileID: 865702210949626194}
   m_Layer: 0
-  m_Name: MiniSlime_NV
+  m_Name: WaterSlime_NV
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2298176473986699054
+--- !u!4 &2919528434104879618
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
+  m_GameObject: {fileID: 7535158563778163743}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6994010911285153870
+--- !u!212 &8946899271825308492
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
+  m_GameObject: {fileID: 7535158563778163743}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.050980393, a: 1}
+  m_Color: {r: 0.009745443, g: 0.15351972, b: 0.6886792, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -89,14 +89,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4395232849315774659
+--- !u!50 &2039682089797032623
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
+  m_GameObject: {fileID: 7535158563778163743}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -116,13 +116,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4862313199156066281
+--- !u!58 &2018788708740479672
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
+  m_GameObject: {fileID: 7535158563778163743}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -151,35 +151,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7560164880595190855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba34df158349a2e41afe6dfea8708db6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: -5055233691436949666}
-  fireJuicePrefab: {fileID: 6150765940916408923, guid: 36907e40c85ad294bafbecb5d4721f42, type: 3}
-  miniSlimeSplit: {fileID: 6867323384726403893, guid: 6ce464d5d67d1604fb285d2cca9833d3, type: 3}
-  speed: 5
-  burnTime: 1
-  animator: {fileID: 5418347932885130032}
---- !u!95 &5418347932885130032
+--- !u!95 &-8407725129644438398
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
+  m_GameObject: {fileID: 7535158563778163743}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 940299e266bbcd848851f538ebe4948f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 68a99eef3b59b6545b261b43de9d81be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -190,13 +172,13 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!82 &-5055233691436949666
+--- !u!82 &134684193565397415
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2624276657588719439}
+  m_GameObject: {fileID: 7535158563778163743}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -286,3 +268,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &865702210949626194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535158563778163743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c60c1dc69af407409c54947a8274b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 134684193565397415}
+  miniSlimePrefab: {fileID: 2624276657588719439, guid: db0c0314d1ab4be4a9b7b6b38fcfe576, type: 3}
+  slimeSplit: {fileID: 6867323384726403893, guid: 825de400c80624f409609e53ccb42a94, type: 3}
+  speed: 5
+  burnTime: 2
+  inLava: 0
+  animator: {fileID: -8407725129644438398}
