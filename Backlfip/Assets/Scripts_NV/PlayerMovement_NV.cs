@@ -105,6 +105,11 @@ public class PlayerMovement_NV : MonoBehaviour
             isDamaged = true;
             animator.SetBool("IsDamaged", true);
         }
+        if (collision.gameObject.tag == "Fishies")
+        {
+            GameManager_NV.gameManagerNV.playerTemp.HealUnit(15);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
