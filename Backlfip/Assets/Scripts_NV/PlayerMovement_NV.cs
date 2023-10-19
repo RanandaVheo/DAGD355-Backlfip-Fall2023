@@ -94,10 +94,9 @@ public class PlayerMovement_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(5);
+            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(15);
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
             isDamaged = true;
-            Debug.Log("DAMAGE");
             animator.SetBool("IsDamaged", true);
         }
     }

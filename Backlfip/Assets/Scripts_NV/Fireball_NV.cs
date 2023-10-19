@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Fireball_NV : MonoBehaviour
 {
+    [SerializeField] TempBar_NV tempBar;
 
     public AudioSource source;
     public GameObject player;
@@ -29,7 +30,6 @@ public class Fireball_NV : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && fireballOnCooldown == false)
         {
-            // NEED TO ADD: CHECK IF PLAYER HAS ENOUGH FIRE JUICE
             fireballOnCooldown = true;
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
@@ -54,5 +54,7 @@ public class Fireball_NV : MonoBehaviour
         f.transform.position = player.transform.position;
         f.GetComponent<Rigidbody2D>().velocity = direction * fireballSpeed;
         Destroy(f, lifetime);
+        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(10);
+        tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
     }
 }
