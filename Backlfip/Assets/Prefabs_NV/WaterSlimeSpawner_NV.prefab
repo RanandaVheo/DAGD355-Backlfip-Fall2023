@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterSlimePrefab: {fileID: 7535158563778163743, guid: 987a230dd496fec4883128d10c305f71, type: 3}
   respawnTime: 10
-  spawnerHealth: 0
+  spawnerHealth: 25
 --- !u!61 &-8975510193724880549
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class Ground_Hank : MonoBehaviour
             case "Player":
 
                 Capture();
+                
                 break;
 
             case "FireEnemy":

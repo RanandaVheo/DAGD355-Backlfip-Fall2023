@@ -33,7 +33,7 @@ public class PlayerMovement_NV : MonoBehaviour
             animator.SetBool("IsJumping", true);
             if (grounded)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 5f);
+                rb.velocity = new Vector2(rb.velocity.x, 10f);
                 grounded = false;
             }
             else
