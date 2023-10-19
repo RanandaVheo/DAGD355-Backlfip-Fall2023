@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class Ground_Hank : MonoBehaviour
 {
-
     public Sprite originalSprite;
     public Sprite fireSprite;
     public Sprite waterSprite;
@@ -18,6 +18,11 @@ public class Ground_Hank : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         Tilemap tilemap = FindAnyObjectByType<Tilemap>();
         transform.position = tilemap.GetCellCenterWorld(new Vector3Int((int) transform.position.x, (int) transform.position.y, (int) transform.position.z));
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void Burn()

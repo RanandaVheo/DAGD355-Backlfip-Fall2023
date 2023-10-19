@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement_NV : MonoBehaviour
 {
     [SerializeField] TempBar_NV tempBar;
 
     public float speed;
+    public int playerScore;
     public bool isDamaged;
     public bool isAttacking;
     public Animator animator;
     private Rigidbody2D rb;
     private bool grounded = true;
+
+    public TextMeshProUGUI scoreUI;
 
     // Start is called before the first frame update
     void Start()
@@ -81,13 +85,15 @@ public class PlayerMovement_NV : MonoBehaviour
             isAttacking = false;
         }
 
+        scoreUI.text = playerScore.ToString();
+
         GameManager_NV.gameManagerNV.playerTemp.DamageUnit(2 * Time.deltaTime);
         tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         
         if(GameManager_NV.gameManagerNV.playerTemp.Temp <= 0)
         {
             // GAME OVER
-            Debug.Log("GAME OVER");
+            SceneManager.LoadScene("GameOver_NV");
         }
     }
 
@@ -98,12 +104,21 @@ public class PlayerMovement_NV : MonoBehaviour
             animator.SetBool("IsJumping", false);
             grounded = true;
         }
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "WaterEnemy")
         {
             GameManager_NV.gameManagerNV.playerTemp.DamageUnit(15);
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
             isDamaged = true;
             animator.SetBool("IsDamaged", true);
+            playerScore -= 5;
+        }
+        if (collision.gameObject.tag == "FireEnemy")
+        {
+            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(15);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+            isDamaged = true;
+            animator.SetBool("IsDamaged", true);
+            playerScore -= 5;
         }
     }
 
@@ -113,10 +128,11 @@ public class PlayerMovement_NV : MonoBehaviour
         {
             GameManager_NV.gameManagerNV.playerTemp.HealUnit(5);
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+            playerScore += 5;
         }
         if (collision.gameObject.tag == "Coin")
         {
-            // ADD COINS
+            playerScore += 25;
         }
     }
 
