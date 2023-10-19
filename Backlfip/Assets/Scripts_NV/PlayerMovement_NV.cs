@@ -1,22 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement_NV : MonoBehaviour
 {
+    [SerializeField] TempBar_NV tempBar;
 
     public float speed;
-    public float fireJuice = 5;
-    public float lavaTime = 1f;
     public bool isDamaged;
     public bool isAttacking;
     public Animator animator;
-    public TextMeshProUGUI fireJuiceUI;
     private Rigidbody2D rb;
     private bool grounded = true;
-
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +25,6 @@ public class PlayerMovement_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fireJuiceUI.text = fireJuice.ToString();
-
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         animator.SetFloat("Speed", Mathf.Abs(h));
@@ -84,6 +80,9 @@ public class PlayerMovement_NV : MonoBehaviour
             Invoke("animationUpdate", 0.1f);
             isAttacking = false;
         }
+
+        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(1 * Time.deltaTime);
+        tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -95,6 +94,8 @@ public class PlayerMovement_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
+            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(5);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
             isDamaged = true;
             Debug.Log("DAMAGE");
             animator.SetBool("IsDamaged", true);
@@ -105,7 +106,8 @@ public class PlayerMovement_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Juice")
         {
-            fireJuice++;
+            GameManager_NV.gameManagerNV.playerTemp.HealUnit(5);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         }
         if (collision.gameObject.tag == "Refresh")
         {
@@ -117,7 +119,8 @@ public class PlayerMovement_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Lava")
         {
-            fireJuice += 1 * Time.deltaTime;
+            GameManager_NV.gameManagerNV.playerTemp.HealUnit(5 * Time.deltaTime);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         }
     }
 
