@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: -5055233691436949666}
-  waterRefreshPrefab: {fileID: 6150765940916408923, guid: d1e10e0bef399d445b8731f875bb897a, type: 3}
+  coinPrefab: {fileID: 6150765940916408923, guid: d1e10e0bef399d445b8731f875bb897a, type: 3}
   miniSlimeSplit: {fileID: 6867323384726403893, guid: e722595cc007feb46a5d6ad3119e3b22, type: 3}
   speed: 5
   burnTime: 1

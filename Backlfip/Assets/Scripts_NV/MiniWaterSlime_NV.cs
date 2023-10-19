@@ -6,7 +6,7 @@ public class MiniWaterSlime_NV : MonoBehaviour
 {
     public AudioSource source;
     GameObject player;
-    public GameObject waterRefreshPrefab;
+    public GameObject coinPrefab;
     public GameObject miniSlimeSplit;
     public float speed = 5f;
     public float burnTime = 1f;
@@ -37,7 +37,7 @@ public class MiniWaterSlime_NV : MonoBehaviour
 
     private void spawnWaterRefresh()
     {
-        GameObject w = Instantiate(waterRefreshPrefab) as GameObject;
+        GameObject w = Instantiate(coinPrefab) as GameObject;
         w.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
     }
     private void spawnSlimeSplit()
