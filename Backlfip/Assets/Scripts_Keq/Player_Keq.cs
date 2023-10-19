@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove_Keq : MonoBehaviour
+public class Player_Keq : MonoBehaviour
 {
-    public GameManager_Keq managerRef;
-    public HPBar_Keq HPBarRef;
-    public float speed = 10f;
+    //public GameManager_Keq managerRef;
 
     private Rigidbody2D rb;
     private bool underwater = false;
@@ -20,7 +18,7 @@ public class PlayerMove_Keq : MonoBehaviour
     
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
+        /*float h = Input.GetAxis("Horizontal");
 
         if (!managerRef.isGameOver)
         {
@@ -28,20 +26,13 @@ public class PlayerMove_Keq : MonoBehaviour
 
             //for now, lock player movement while fishing. Can be taken out later if it's not fun for play
             if(!managerRef.isFishing) transform.position += new Vector3(h, 0f, 0f) * Time.deltaTime * speed;
-        }
+        }*/
 
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            HPBarRef.changeHPBar(true, 1);
-            Destroy(collision.gameObject);
-        }
-
         if (collision.gameObject.CompareTag("Underwater") && underwater == false)
         {
             rb.gravityScale = .06f;
@@ -50,7 +41,7 @@ public class PlayerMove_Keq : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Fishies"))
         {
-            HPBarRef.changeHPBar(false, 1);
+            //make collecting this heal you
             Destroy(collision.gameObject);
         }
         

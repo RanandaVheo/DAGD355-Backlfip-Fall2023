@@ -14,6 +14,7 @@ public class FishingGame_Keq : MonoBehaviour
     public Transform poleRef;
     public Rigidbody2D bobberRef;
 
+    private bool prevFishing; //to check if we ended the fishing game without winning
     private bool castingLine = false;
     private bool prevMousePressed = false;
 
@@ -38,6 +39,12 @@ public class FishingGame_Keq : MonoBehaviour
         {
             bobberRef.transform.position = Vector3.MoveTowards(bobberRef.transform.position, poleRef.position, 20 * Time.deltaTime);
         }
+        else if(!managerRef.isFishing && prevFishing)
+        {
+            castingLine = false;
+            bobberRef.transform.position = Vector3.MoveTowards(bobberRef.transform.position, poleRef.position, 50 * Time.deltaTime);
+
+        }
 
 
         linePoints[0] = poleRef.position;
@@ -48,6 +55,7 @@ public class FishingGame_Keq : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !prevMousePressed) clickToCast();
 
         prevMousePressed = Input.GetMouseButtonDown(0);
+        prevFishing = managerRef.isFishing;
 
     }
 

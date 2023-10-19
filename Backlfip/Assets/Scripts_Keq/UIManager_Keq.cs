@@ -11,13 +11,13 @@ public class UIManager_Keq : MonoBehaviour
     private RectTransform[] QTE_RectHolder, QTE_TargetHolder;
 
     public GameManager_Keq managerRef;
-    public TMPro.TextMeshProUGUI scoreRef;
-    public GameObject loseRef, winRef;
+    //public TMPro.TextMeshProUGUI scoreRef;
+    //public GameObject loseRef, winRef;
     public GameObject QTEprefab;
-    public string BasicScoreText = "Score: "; //the score text that is displayed all the time
+    //public string BasicScoreText = "Score: "; //the score text that is displayed all the time
     public float QTEspeed = 5f;
 
-    private int prevScoreTally = 0;
+    //private int prevScoreTally = 0;
     private Vector2 QTEsizeDelta;
     private int QTEcount = 0;
     private float spawnTimer = 0;
@@ -29,7 +29,7 @@ public class UIManager_Keq : MonoBehaviour
 
     void Start()
     {
-        scoreRef.text = BasicScoreText + managerRef.scoreTally; //we start with 0 points but still need to show that
+        //scoreRef.text = BasicScoreText + managerRef.scoreTally; //we start with 0 points but still need to show that
 
         QTE_RectHolder = new RectTransform[managerRef.howManyQTE]; //Array to easily pass around all QTE rects when needed
         QTE_TargetHolder = new RectTransform[managerRef.howManyQTE]; //Array to easily pass around all QTE targets when needed
@@ -64,7 +64,7 @@ public class UIManager_Keq : MonoBehaviour
             spawnTimer = 0;
         }
 
-        //if the score changes, update the text to reflect that
+        /*//if the score changes, update the text to reflect that
         if (managerRef.scoreTally != prevScoreTally) scoreRef.text = BasicScoreText + managerRef.scoreTally;
 
         //if the game is over, check if we won or lost
@@ -75,7 +75,7 @@ public class UIManager_Keq : MonoBehaviour
             else if(!managerRef.winOrLose) winRef.SetActive(true);
         }
 
-        prevScoreTally = managerRef.scoreTally;
+        prevScoreTally = managerRef.scoreTally;*/
         prevMousePressed = Input.GetMouseButtonDown(0);
     }
 
@@ -86,7 +86,11 @@ public class UIManager_Keq : MonoBehaviour
         for (int i = 0; i < QTEcount; i++)
         {
             //if the vector is here, the ring is not visible anymore and should stop scaling/player didn't click in time
-            if (QTE_RectHolder[i].sizeDelta.x > 500 || QTE_RectHolder[i].sizeDelta.x < (QTE_TargetHolder[i].rect.width * .15)) continue;
+            if (QTE_RectHolder[i].sizeDelta.x > 500 || QTE_RectHolder[i].sizeDelta.x < (QTE_TargetHolder[i].rect.width * .15))
+            {
+                managerRef.isFishing = false;
+                break; 
+            }
 
             //newSize will become the new circle's size
             Vector2 newSize = QTEsizeDelta;
@@ -109,9 +113,10 @@ public class UIManager_Keq : MonoBehaviour
                 //if the player timed their click correctly, add to points. If not, then they failed fishing
                 if (ringMin <= QTE_RectHolder[i].rect.width && QTE_RectHolder[i].rect.width <= ringMax)
                 {
-                    managerRef.scoreTally++;
+                    managerRef.fishingWin = true;
                 }
-                else managerRef.isFishing = false;
+                
+                managerRef.isFishing = false;
             }
         }
     }
