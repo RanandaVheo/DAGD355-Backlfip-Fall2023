@@ -18,7 +18,10 @@ TagManager:
   - QTE UI target
   - Enemy
   - Platform
-  - Refresh
+  - FireEnemy
+  - WaterEnemy
+  - Coin
+  - Spawner
   layers:
   - Default
   - TransparentFX

@@ -43,5 +43,9 @@ public class RockCollision_NV : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "Spawner")
+        {
+            Destroy(gameObject);
+        }
     }
 }
