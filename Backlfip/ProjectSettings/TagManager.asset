@@ -17,6 +17,8 @@ TagManager:
   - QTE UI
   - QTE UI target
   - Enemy
+  - Platform
+  - Refresh
   layers:
   - Default
   - TransparentFX

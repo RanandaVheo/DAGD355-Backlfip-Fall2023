@@ -30,15 +30,15 @@ public class MiniWaterSlime_NV : MonoBehaviour
         if (miniSlimeHealth == 0)
         {
             spawnSlimeSplit();
-            spawnFireJuice();
+            spawnWaterRefresh();
             Destroy(gameObject);
         }
     }
 
-    private void spawnFireJuice()
+    private void spawnWaterRefresh()
     {
-        GameObject j = Instantiate(waterRefreshPrefab) as GameObject;
-        j.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
+        GameObject w = Instantiate(waterRefreshPrefab) as GameObject;
+        w.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
     }
     private void spawnSlimeSplit()
     {

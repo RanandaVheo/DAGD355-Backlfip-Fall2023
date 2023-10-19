@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7777311942269059527}
   m_Layer: 0
   m_Name: WaterRefresh_NV
-  m_TagString: Juice
+  m_TagString: Refresh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

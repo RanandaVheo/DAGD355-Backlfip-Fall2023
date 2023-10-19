@@ -107,6 +107,10 @@ public class PlayerMovement_NV : MonoBehaviour
         {
             fireJuice++;
         }
+        if (collision.gameObject.tag == "Refresh")
+        {
+
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
