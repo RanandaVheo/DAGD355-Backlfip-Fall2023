@@ -43,6 +43,14 @@ public class RockCollision_NV : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "FireEnemy")
+        {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "WaterEnemy")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
