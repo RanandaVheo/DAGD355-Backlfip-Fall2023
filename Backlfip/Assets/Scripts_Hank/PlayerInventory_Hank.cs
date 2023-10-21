@@ -1,21 +1,27 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PlayerInventory_Hank : MonoBehaviour
 {
     List<GameObject> items = new();
     public int inventorySize = 5;
+    public int selectedItemIndex = 0;
 
 
 
     [SerializeField] GameObject inventoryUIPrefab;
+    [SerializeField] Sprite activeItemIndicator;
     private GameObject inventoryUI;
     private bool tabDownLastFrame = false;
     private List<Image> uiImageSlots;
+    private List<Image> uiImageOverlaySlots;
     private Canvas uiCanvas;
 
     void Start()
@@ -23,9 +29,19 @@ public class PlayerInventory_Hank : MonoBehaviour
         inventoryUI = Instantiate(inventoryUIPrefab, transform.parent);
         uiCanvas = inventoryUI.GetComponentInChildren<Canvas>();
 
-        // adding more elements inventoryUIPrefab potentially increases this list
-        // if there are more than five images objects inside its canvas, the drawing prodedure breaks
-        uiImageSlots = inventoryUI.GetComponentsInChildren<Image>().ToList();
+        uiImageSlots = new List<Image>();
+        uiImageOverlaySlots = new List<Image>();
+        foreach (Image i in inventoryUI.GetComponentsInChildren<Image>().ToList())
+        {
+            if (i.gameObject.CompareTag("GameController"))
+            {
+                uiImageSlots.Add(i);
+            }
+            if (i.gameObject.CompareTag("Untagged"))
+            {
+                uiImageOverlaySlots.Add(i);
+            }
+        }
         
         
     }
@@ -48,8 +64,26 @@ public class PlayerInventory_Hank : MonoBehaviour
 
         inventoryUI.transform.position = gameObject.transform.position;
 
-
         if (!uiCanvas.enabled) return;
+
+        if (selectedItemIndex < 0) selectedItemIndex = uiImageOverlaySlots.Count - 1;
+        if (selectedItemIndex >= uiImageOverlaySlots.Count) selectedItemIndex = 0;
+
+
+        for (int i = 0; i < uiImageOverlaySlots.Count; i++)
+        {
+            if (i == selectedItemIndex)
+            {
+                uiImageOverlaySlots[i].sprite = activeItemIndicator;
+                uiImageOverlaySlots[i].color = new Color(255, 255, 255, 255);
+            } else
+            {
+                uiImageOverlaySlots[i].sprite = null;
+                uiImageOverlaySlots[i].color = new Color(255, 255, 255, 0);
+            }
+        }
+
+
         int potentiallyEmptySlots = 5;
         for (int i = 0; i < items.Count; i++)
         {
@@ -121,6 +155,19 @@ public class PlayerInventory_Hank : MonoBehaviour
 
         Debug.Log("Item(s) added to inventory successfully.");
         return true;
+    }
+
+    public void DropSelectedItem()
+    {
+        Item_Hank itemToDrop = items[selectedItemIndex].GetComponent<Item_Hank>();
+        if (itemToDrop == null)
+        {
+            Debug.Log("No item to drop");
+            return;
+        }
+        Drop(items[selectedItemIndex]);
+        itemToDrop.transform.position = transform.position;
+        itemToDrop.Drop();
     }
 
     public void Drop(GameObject item)
