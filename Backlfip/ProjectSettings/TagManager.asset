@@ -22,11 +22,12 @@ TagManager:
   - WaterEnemy
   - Coin
   - Spawner
+  - Refresh
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

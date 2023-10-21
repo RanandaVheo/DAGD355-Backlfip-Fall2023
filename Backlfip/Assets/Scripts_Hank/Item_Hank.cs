@@ -37,8 +37,8 @@ public class Item_Hank : MonoBehaviour
         if (!onGround || !pickupCooldownTimer.isDone) return;
         if (collision.CompareTag("Player"))
         {
-            Player_Hank player_HankScript = collision.GetComponent<Player_Hank>();
-            bool addedSuccessfully = player_HankScript.AddToInventory(gameObject);
+            Player_Keq player_KeqScript = collision.GetComponent<Player_Keq>();
+            bool addedSuccessfully = player_KeqScript.AddToInventory(gameObject);
             if (!addedSuccessfully) return;
             Disable();
             onGround = false;

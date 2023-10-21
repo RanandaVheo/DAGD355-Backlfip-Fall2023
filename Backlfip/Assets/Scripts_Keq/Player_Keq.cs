@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Player_Keq : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class Player_Keq : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool underwater = false;
+    private PlayerInventory_Hank inventory;
+    private bool xDownLastFrame = false;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        inventory = GetComponent<PlayerInventory_Hank>();
     }
 
     
@@ -28,6 +32,40 @@ public class Player_Keq : MonoBehaviour
             if(!managerRef.isFishing) transform.position += new Vector3(h, 0f, 0f) * Time.deltaTime * speed;
         }*/
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (!xDownLastFrame)
+            {
+                Debug.Log("tried drop item");
+                inventory.DropSelectedItem();
+            }
+            xDownLastFrame = true;
+        }
+        else
+        {
+            xDownLastFrame = false;
+        }
+
+        float mouseWheelvalue = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseWheelvalue > 0) inventory.selectedItemIndex--;
+        if (mouseWheelvalue < 0) inventory.selectedItemIndex++;
+
+    }
+    public void DropFromInventory(GameObject item)
+    {
+        if (item == null)
+        {
+            Debug.Log("No item to drop.");
+            return;
+        }
+
+        item.transform.position = transform.position;
+        inventory.Drop(item);
+    }
+
+    public bool AddToInventory(GameObject item)
+    {
+        return inventory.Add(item);
     }
 
 
