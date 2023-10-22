@@ -166,7 +166,7 @@ public class PlayerInventory_Hank : MonoBehaviour
             return;
         }
         Drop(items[selectedItemIndex]);
-        itemToDrop.transform.position = transform.position;
+        itemToDrop.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
         itemToDrop.Drop();
     }
 
@@ -204,7 +204,7 @@ public class PlayerInventory_Hank : MonoBehaviour
     {
         try
         {
-            return items[0];
+            return items[selectedItemIndex];
         }
         catch
         {
@@ -212,4 +212,16 @@ public class PlayerInventory_Hank : MonoBehaviour
         }
         
     }
+
+    public string GetSelectedItemName()
+    {
+        GameObject selectedItem = TryGetItem();
+        if (selectedItem == null)
+        {
+            Debug.Log("No item selected!");
+            return null;
+        }
+        Item_Hank selectedItemScript = selectedItem.GetComponent<Item_Hank>();
+        return selectedItemScript.itemName;
+    }        
 }
