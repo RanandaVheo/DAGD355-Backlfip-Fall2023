@@ -10,14 +10,14 @@ public class Ground_Hank : MonoBehaviour
     public Sprite fireSprite;
     public Sprite waterSprite;
 
-    private Tilemap tilemapHandle;
+    //private Tilemap tilemapHandle;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Tilemap tilemap = FindAnyObjectByType<Tilemap>();
-        transform.position = tilemap.GetCellCenterWorld(new Vector3Int((int) transform.position.x, (int) transform.position.y, (int) transform.position.z));
+        //Tilemap tilemap = FindAnyObjectByType<Tilemap>();
+        //transform.position = tilemap.GetCellCenterWorld(new Vector3Int((int) transform.position.x, (int) transform.position.y, (int) transform.position.z));
     }
 
     private void Update()

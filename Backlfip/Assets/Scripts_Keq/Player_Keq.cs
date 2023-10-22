@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class Player_Keq : MonoBehaviour
     private bool underwater = false;
     private PlayerInventory_Hank inventory;
     private bool xDownLastFrame = false;
+    private bool eDownLastFrame = false;
 
 
     void Start()
@@ -36,7 +38,6 @@ public class Player_Keq : MonoBehaviour
         {
             if (!xDownLastFrame)
             {
-                Debug.Log("tried drop item");
                 inventory.DropSelectedItem();
             }
             xDownLastFrame = true;
@@ -44,6 +45,20 @@ public class Player_Keq : MonoBehaviour
         else
         {
             xDownLastFrame = false;
+        }
+
+        // HOW TO USE ITEMS
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!eDownLastFrame)
+            {
+                UseSelectedItem(); // see this function for details
+            }
+            eDownLastFrame = true;
+        }
+        else
+        {
+            eDownLastFrame = false;
         }
 
         float mouseWheelvalue = Input.GetAxis("Mouse ScrollWheel");
@@ -91,6 +106,22 @@ public class Player_Keq : MonoBehaviour
         {
             rb.gravityScale = 1f;
             underwater = false;
+        }
+    }
+
+    void UseSelectedItem()
+    {
+        string selectedItemName = inventory.GetSelectedItemName();
+        if (selectedItemName == null) return;
+
+        switch (selectedItemName)
+        {
+            case "ExampleItemName":
+                // do related example item functions!
+                break;
+            default:
+                Debug.Log(selectedItemName + " used!");
+                break;
         }
     }
 }
