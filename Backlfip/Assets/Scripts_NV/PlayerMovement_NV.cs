@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement_NV : MonoBehaviour
 {
+    [SerializeField] TempBar_NV tempBar;
 
     public float speed;
-    public float fireJuice = 5f;
-    public float lavaTime = 1f;
+    public int playerScore;
+    public bool isDamaged;
+    public bool isAttacking;
     public Animator animator;
     private Rigidbody2D rb;
     private bool grounded = true;
 
+    public TextMeshProUGUI scoreUI;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +37,7 @@ public class PlayerMovement_NV : MonoBehaviour
             animator.SetBool("IsJumping", true);
             if (grounded)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 5f);
+                rb.velocity = new Vector2(rb.velocity.x, 10f);
                 grounded = false;
             }
             else
@@ -45,21 +52,48 @@ public class PlayerMovement_NV : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            isAttacking = true;
             animator.SetBool("IsAttacking", true);
         }
         else
         {
+            isAttacking = false;
             animator.SetBool("IsAttacking", false);
         }
 
 
         if (Input.GetMouseButtonDown(1))
         {
+            isAttacking = true;
             animator.SetBool("IsAttacking", true);
         }
         else
         {
+            isAttacking = false;
             animator.SetBool("IsAttacking", false);
+        }
+
+        if (isDamaged == true)
+        {
+            Invoke("animationUpdate", 0.1f);
+            isDamaged = false;
+        }
+
+        if (isAttacking == true)
+        {
+            Invoke("animationUpdate", 0.1f);
+            isAttacking = false;
+        }
+
+        scoreUI.text = playerScore.ToString();
+
+        //GameManager_NV.gameManagerNV.playerTemp.DamageUnit(2 * Time.deltaTime);
+        tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+        
+        if(GameManager_NV.gameManagerNV.playerTemp.Temp <= 0)
+        {
+            // GAME OVER
+            SceneManager.LoadScene("GameOver_NV");
         }
     }
 
@@ -68,13 +102,28 @@ public class PlayerMovement_NV : MonoBehaviour
         if(collision.gameObject.tag == "Platform")
         {
             animator.SetBool("IsJumping", false);
-            animator.SetBool("IsDamaged", false);
-            animator.SetBool("IsAttacking", false);
             grounded = true;
         }
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "WaterEnemy")
         {
+            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(15);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+            isDamaged = true;
             animator.SetBool("IsDamaged", true);
+            playerScore -= 5;
+        }
+        if (collision.gameObject.tag == "FireEnemy")
+        {
+            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(15);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+            isDamaged = true;
+            animator.SetBool("IsDamaged", true);
+            playerScore -= 5;
+        }
+        if (collision.gameObject.tag == "Fishies")
+        {
+            GameManager_NV.gameManagerNV.playerTemp.HealUnit(15);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         }
     }
 
@@ -82,20 +131,29 @@ public class PlayerMovement_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Juice")
         {
-            fireJuice++;
-            Debug.Log("MORE JUICE!");
+            GameManager_NV.gameManagerNV.playerTemp.HealUnit(5);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+            playerScore += 5;
         }
-        if (collision.gameObject.tag == "Lava")
+        if (collision.gameObject.tag == "Coin")
         {
-            Invoke("inLava", 1);
-            Invoke("inLava", 2);
-            Invoke("inLava", 3);
+            playerScore += 25;
         }
     }
 
-    private void inLava()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        fireJuice++;
-        Debug.Log("MORE JUICE");
+        if (collision.gameObject.tag == "Lava")
+        {
+            GameManager_NV.gameManagerNV.playerTemp.HealUnit(5 * Time.deltaTime);
+            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
+        }
+    }
+
+
+    private void animationUpdate()
+    {
+        animator.SetBool("IsDamaged", false);
+        animator.SetBool("IsAttacking", false);
     }
 }

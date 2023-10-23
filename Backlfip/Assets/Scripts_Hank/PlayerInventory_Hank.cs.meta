@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - inventoryUIPrefab: {fileID: 4138561429506963663, guid: 65367ce05dacb3349870bd6d23b25a7e, type: 3}
+  - activeItemIndicator: {fileID: 21300000, guid: bcea34972219ea0429afc9050d5db38d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

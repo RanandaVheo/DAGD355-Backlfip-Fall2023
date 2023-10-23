@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class Ground_Hank : MonoBehaviour
 {
-
     public Sprite originalSprite;
     public Sprite fireSprite;
     public Sprite waterSprite;
 
-    private Tilemap tilemapHandle;
+    //private Tilemap tilemapHandle;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = originalSprite;
-        Tilemap tilemap = FindAnyObjectByType<Tilemap>();
-        transform.position = tilemap.GetCellCenterWorld(new Vector3Int((int) transform.position.x, (int) transform.position.y, (int) transform.position.z));
+        //Tilemap tilemap = FindAnyObjectByType<Tilemap>();
+        //transform.position = tilemap.GetCellCenterWorld(new Vector3Int((int) transform.position.x, (int) transform.position.y, (int) transform.position.z));
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void Burn()
@@ -30,6 +34,10 @@ public class Ground_Hank : MonoBehaviour
     {
         spriteRenderer.sprite = waterSprite;
     }
+    public void Capture()
+    {
+        spriteRenderer.sprite = originalSprite;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -37,10 +45,16 @@ public class Ground_Hank : MonoBehaviour
         {
             case "Player":
 
+                Capture();
+                
+                break;
+
+            case "FireEnemy":
+
                 Burn();
                 break;
 
-            case "Enemy":
+            case "WaterEnemy":
 
                 Hydrate();
                 break;

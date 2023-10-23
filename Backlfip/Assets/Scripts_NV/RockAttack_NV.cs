@@ -4,40 +4,38 @@ using UnityEngine;
 
 public class RockAttack_NV : MonoBehaviour
 {
+
     public AudioSource source;
     public GameObject player;
     public GameObject rockPrefab;
-    public float rockSpeed = 50f;
-    private Vector3 target;
+    public Transform rockTransform;
+    public float lifetime = 2f;
+    private Rigidbody2D rb;
+    private Camera mainCam;
+    private Vector3 mousePos;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainCam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        target = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 difference = target - player.transform.position;
+        Vector3 rotation = mousePos - transform.position;
 
-        if(Input.GetMouseButtonDown(0))
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+        if (Input.GetMouseButtonDown(0))
         {
+            Instantiate(rockPrefab, rockTransform.position, Quaternion.identity);
             source.Play();
-            float distance = difference.magnitude;
-            Vector2 direction = difference / distance;
-            direction.Normalize();
-            rockAttack(direction);
+            Destroy(rb, lifetime);
         }
-
-    }
-
-    void rockAttack(Vector2 direction)
-    {
-        GameObject r = Instantiate(rockPrefab) as GameObject;
-        r.transform.position = player.transform.position;
-        r.GetComponent<Rigidbody2D>().velocity = direction * rockSpeed;
     }
 }

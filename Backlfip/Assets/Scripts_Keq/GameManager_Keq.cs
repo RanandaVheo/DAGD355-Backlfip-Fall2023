@@ -8,6 +8,7 @@ public class GameManager_Keq : MonoBehaviour
     public bool winOrLose = false; //false = win, true = lose
 
     public bool isFishing = false; //false = not fishing, true = fishing right now
+    public bool fishingWin = false; //will be true, to signal to other scripts a success
     public int howManyQTE = 3; //how many QTE circles do we want to popup during minigames
     public float fishingTimer;
     public float fishingTimerMax = 4f;
@@ -17,8 +18,6 @@ public class GameManager_Keq : MonoBehaviour
     public int WinCondition = 5;
 
     public bool prevMousePressed = false;
-
-    //public GameObject QTEprefab;
 
 
 
@@ -32,13 +31,13 @@ public class GameManager_Keq : MonoBehaviour
     void Update()
     {
 
-        if (!isGameOver)
+        /*if (!isGameOver)
         {
             if (isFishing) fishingTimer -= Time.deltaTime;
             else if (fishingTimer != fishingTimerMax) fishingTimer = fishingTimerMax;
         }
 
-        if (scoreTally >= WinCondition || winOrLose) isGameOver = true;
+        if (scoreTally >= WinCondition || winOrLose) isGameOver = true;*/
 
         prevMousePressed = Input.GetMouseButtonDown(0);
     }

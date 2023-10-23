@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 134684193565397415}
   m_Layer: 0
   m_Name: Slime_NV
-  m_TagString: Enemy
+  m_TagString: FireEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2018788708740479672
 CircleCollider2D:
   m_ObjectHideFlags: 0

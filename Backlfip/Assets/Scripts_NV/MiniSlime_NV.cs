@@ -56,11 +56,9 @@ public class MiniSlime_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Fireball")
         {
-            miniSlimeHealth--;
-            source.Play();
+            burnDamage();
             Invoke("burnDamage", 1);
             Invoke("burnDamage", 2);
-            animator.SetBool("IsHurt", true);
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -77,24 +75,23 @@ public class MiniSlime_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Lava")
         {
-            miniSlimeHealth--;
-            Invoke("lavaBurn", 1);
-            Invoke("lavaBurn", 2);
-            Invoke("lavaBurn", 3);
+            burnDamage();
+            Invoke("burnDamage", 0.5f);
+            Invoke("burnDamage", 1);
         }
     }
 
     private void burnDamage()
     {
+        animator.SetBool("IsHurt", true);
         miniSlimeHealth--;
         source.Play();
-        Debug.Log("BURNING");
     }
 
-    private void lavaBurn()
+    private void lavaDamage()
     {
+        animator.SetBool("IsHurt", true);
         miniSlimeHealth--;
         source.Play();
-        Debug.Log("BURNING");
     }
 }
