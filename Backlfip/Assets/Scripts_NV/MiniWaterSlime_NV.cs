@@ -29,6 +29,7 @@ public class MiniWaterSlime_NV : MonoBehaviour
 
         if (miniSlimeHealth == 0)
         {
+            GameManager_NV.gameManagerNV.playerScore += 10;
             spawnSlimeSplit();
             spawnWaterRefresh();
             Destroy(gameObject);

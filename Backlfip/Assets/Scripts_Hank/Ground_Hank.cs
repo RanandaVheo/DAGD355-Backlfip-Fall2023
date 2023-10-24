@@ -32,6 +32,7 @@ public class Ground_Hank : MonoBehaviour
     public void Capture()
     {
         spriteRenderer.sprite = originalSprite;
+        GameManager_NV.gameManagerNV.playerScore += 5;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,7 +42,7 @@ public class Ground_Hank : MonoBehaviour
             case "Player":
 
                 Capture();
-                
+
                 break;
 
             case "FireEnemy":
