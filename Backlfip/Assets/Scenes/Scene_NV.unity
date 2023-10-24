@@ -2091,7 +2091,7 @@ Transform:
   m_GameObject: {fileID: 324929337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019, y: -3.25, z: 0}
+  m_LocalPosition: {x: 61.6, y: -1.9, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4146,7 +4146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managerRef: {fileID: 587334319}
   QTEprefab: {fileID: 1408255709738931272, guid: ba8b6ce59277e274681a92824d06683d, type: 3}
-  QTEspeed: 15
+  QTEspeed: 12
 --- !u!1 &667377374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5734,7 +5734,7 @@ Transform:
   m_GameObject: {fileID: 896747585}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019, y: -0.845649, z: -10}
+  m_LocalPosition: {x: 61.6, y: 0.50435126, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8345,7 +8345,7 @@ Transform:
   m_GameObject: {fileID: 1418337141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019, y: -0.845649, z: -10}
+  m_LocalPosition: {x: 61.6, y: 0.50435126, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13941,9 +13941,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0.42399693, a: 1}
-      key1: {r: 1, g: 0, b: 0.42399693, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 0, g: 0, b: 0, a: 1}
+      key2: {r: 1, g: 0, b: 0.42399693, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -13951,7 +13951,7 @@ LineRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -13966,7 +13966,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 1
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -15316,7 +15316,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -16822,7 +16822,7 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 128
   m_ForceReceiveLayers:
     serializedVersion: 2
     m_Bits: 0
