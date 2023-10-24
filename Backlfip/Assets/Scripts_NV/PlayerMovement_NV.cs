@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement_NV : MonoBehaviour
@@ -15,10 +16,6 @@ public class PlayerMovement_NV : MonoBehaviour
     private Rigidbody2D rb;
     private bool grounded = true;
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -101,23 +98,6 @@ public class PlayerMovement_NV : MonoBehaviour
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
             isDamaged = true;
             animator.SetBool("IsDamaged", true);
-<<<<<<< Updated upstream
-=======
-            GameManager_NV.gameManagerNV.playerScore -= 5;
-        }
-        if (collision.gameObject.tag == "FireEnemy")
-        {
-            GameManager_NV.gameManagerNV.playerTemp.DamageUnit(15);
-            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
-            isDamaged = true;
-            animator.SetBool("IsDamaged", true);
-            GameManager_NV.gameManagerNV.playerScore -= 5;
-        }
-        if (collision.gameObject.tag == "Fishies")
-        {
-            GameManager_NV.gameManagerNV.playerTemp.HealUnit(15);
-            tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
->>>>>>> Stashed changes
         }
     }
 
@@ -127,18 +107,10 @@ public class PlayerMovement_NV : MonoBehaviour
         {
             GameManager_NV.gameManagerNV.playerTemp.HealUnit(5);
             tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
-<<<<<<< Updated upstream
-=======
-            GameManager_NV.gameManagerNV.playerScore += 5;
->>>>>>> Stashed changes
         }
         if (collision.gameObject.tag == "Refresh")
         {
-<<<<<<< Updated upstream
 
-=======
-            GameManager_NV.gameManagerNV.playerScore += 25;
->>>>>>> Stashed changes
         }
     }
 

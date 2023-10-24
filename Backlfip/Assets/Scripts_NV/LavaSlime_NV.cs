@@ -32,7 +32,6 @@ public class LavaSlime_NV : MonoBehaviour
 
         if(slimeHealth == 0)
         {
-            GameManager_NV.gameManagerNV.playerScore += 25;
             spawnSlimeSplit();
             spawnMiniSlime1();
             spawnMiniSlime2();
