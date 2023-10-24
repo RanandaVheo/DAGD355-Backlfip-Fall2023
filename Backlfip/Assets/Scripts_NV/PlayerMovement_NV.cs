@@ -137,7 +137,7 @@ public class PlayerMovement_NV : MonoBehaviour
         }
         if (collision.gameObject.tag == "Coin")
         {
-            playerScore += 25;
+            playerScore += 20;
         }
     }
 
