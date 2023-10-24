@@ -87,7 +87,7 @@ public class PlayerMovement_NV : MonoBehaviour
 
         scoreUI.text = playerScore.ToString();
 
-        //GameManager_NV.gameManagerNV.playerTemp.DamageUnit(2 * Time.deltaTime);
+        GameManager_NV.gameManagerNV.playerTemp.DamageUnit(1 * Time.deltaTime);
         tempBar.SetTemp(GameManager_NV.gameManagerNV.playerTemp.Temp);
         
         if(GameManager_NV.gameManagerNV.playerTemp.Temp <= 0)
