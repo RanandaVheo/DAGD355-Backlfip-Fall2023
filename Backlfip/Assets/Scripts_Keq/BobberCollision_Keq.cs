@@ -23,9 +23,9 @@ public class BobberCollision_Keq : MonoBehaviour
     //For the Fishing Bobber, we want the timer to go down while its touching the water
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Underwater") && !managerRef.isGameOver)
+        if (collision.gameObject.CompareTag("Underwater") && !managerRef.isGameOver && managerRef.canFish)
         {
-            managerRef.isFishing = true; //cooldownTimer -= Time.deltaTime;
+            managerRef.isFishing = true;
 
         }
     }
@@ -40,5 +40,6 @@ public class BobberCollision_Keq : MonoBehaviour
     {
         Instantiate(spawnedObject, transform.position, Quaternion.identity); //spawn the selected object at this current position
         managerRef.fishingWin = false;
+
     }
 }

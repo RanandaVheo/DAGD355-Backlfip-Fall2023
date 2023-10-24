@@ -7,20 +7,18 @@ using UnityEngine.UI;
 
 public class UIManager_Keq : MonoBehaviour
 {
-    private RectTransform[] QTE_RectHolder, QTE_TargetHolder;
-
     public GameManager_Keq managerRef;
-    //public TMPro.TextMeshProUGUI scoreRef;
-    //public GameObject loseRef, winRef;
     public GameObject QTEprefab;
-    //public string BasicScoreText = "Score: "; //the score text that is displayed all the time
+    public AudioSource ClickSound;
     public float QTEspeed = 5f;
 
-    //private int prevScoreTally = 0;
+    private RectTransform[] QTE_RectHolder;
+    private Image[] QTE_ImageHolder;
     private Vector2 QTEsizeDelta;
+    private float QTEcolorDelta;
     private int QTEcount = 0;
     private float spawnTimer = 0;
-    private bool prevMousePressed = false;
+    private bool prevFPressed = false;
     private float ringMin = 18;
     private float ringMax = 28;
 
@@ -28,13 +26,12 @@ public class UIManager_Keq : MonoBehaviour
 
     void Start()
     {
-        //scoreRef.text = BasicScoreText + managerRef.scoreTally; //we start with 0 points but still need to show that
-
-        QTE_RectHolder = new RectTransform[managerRef.howManyQTE]; //Array to easily pass around all QTE rects when needed
-        QTE_TargetHolder = new RectTransform[managerRef.howManyQTE]; //Array to easily pass around all QTE targets when needed
+        QTE_RectHolder = new RectTransform[managerRef.howManyQTE * 2]; //Array to easily pass around all QTE rects when needed
+        QTE_ImageHolder = new Image[managerRef.howManyQTE * 2]; //Array to easily pass around all QTE targets when needed
 
         float changedSize = Time.deltaTime * QTEspeed;
         QTEsizeDelta = new Vector2(changedSize, changedSize);
+        QTEcolorDelta = Time.deltaTime / 4;
     }
 
     
@@ -50,32 +47,20 @@ public class UIManager_Keq : MonoBehaviour
             QuickTimeEventpopups();
 
             //we need to be checking for where the player is clicking
-            if(Input.GetMouseButtonDown(0) && !prevMousePressed) QTEcollisionDetect();
+            if(Input.GetKeyDown(KeyCode.F) && !prevFPressed) QTEcollisionDetect();
 
         }
         //else if we are not fishing and the QTE icons are still on the screen, 
         else if (!managerRef.isFishing) 
         {
-            //we need to delete them
-            destroyQTE(true, QTEcount);
+            //delete them
+            destroyQTE();
 
             //refresh timer for next time we fish
             spawnTimer = 0;
         }
 
-        /*//if the score changes, update the text to reflect that
-        if (managerRef.scoreTally != prevScoreTally) scoreRef.text = BasicScoreText + managerRef.scoreTally;
-
-        //if the game is over, check if we won or lost
-        if (managerRef.isGameOver) 
-        {
-            //true = lose, false = win
-            if (managerRef.winOrLose) loseRef.SetActive(true);
-            else if(!managerRef.winOrLose) winRef.SetActive(true);
-        }
-
-        prevScoreTally = managerRef.scoreTally;*/
-        prevMousePressed = Input.GetMouseButtonDown(0);
+        prevFPressed = Input.GetKeyDown(KeyCode.F);
     }
 
     //this function animates the ring around QTE targets
@@ -85,10 +70,26 @@ public class UIManager_Keq : MonoBehaviour
         for (int i = 0; i < QTEcount; i++)
         {
             //if the vector is here, the ring is not visible anymore and should stop scaling/player didn't click in time
-            if (QTE_RectHolder[i].sizeDelta.x > 500 || QTE_RectHolder[i].sizeDelta.x < (QTE_TargetHolder[i].rect.width * .15))
+            if (QTE_RectHolder[i].sizeDelta.x > 500 || QTE_RectHolder[i].sizeDelta.x < (QTE_RectHolder[i + 1].rect.width * .15))
             {
                 managerRef.isFishing = false;
                 break; 
+            }
+
+            //makes and sets the new color for the ring. Color is on a scale of 0-1 for RGBA
+            Color newColor = QTE_ImageHolder[i].color;
+            if (newColor.g >= 1)
+            {
+                newColor.r -= QTEcolorDelta;
+            }
+            else if (newColor.r >= 0)
+            {
+                newColor.g += QTEcolorDelta;
+            }
+
+            for (int c = 0; c < 2; c++)
+            {
+                QTE_ImageHolder[i + c].color = newColor;
             }
 
             //newSize will become the new circle's size
@@ -107,12 +108,13 @@ public class UIManager_Keq : MonoBehaviour
         for(int i = 0; i < QTEcount; i++) 
         {
             //if the player is clicking this circle
-            if(Vector3.Distance(Input.mousePosition, QTE_TargetHolder[i].position) <= (QTE_TargetHolder[i].rect.width / 2))
+            if(Vector3.Distance(Input.mousePosition, QTE_RectHolder[i + 1].position) <= (QTE_RectHolder[i + 1].rect.width / 2))
             {
                 //if the player timed their click correctly, add to points. If not, then they failed fishing
                 if (ringMin <= QTE_RectHolder[i].rect.width && QTE_RectHolder[i].rect.width <= ringMax)
                 {
                     managerRef.fishingWin = true;
+                    ClickSound.Play();
                 }
                 
                 managerRef.isFishing = false;
@@ -129,40 +131,42 @@ public class UIManager_Keq : MonoBehaviour
             Vector3 thisGuyPos = new Vector3(Random.Range(50, Screen.width - 50), Random.Range(50, Screen.height - 50), 0f);
             GameObject newQTE = Instantiate(QTEprefab, thisGuyPos, Quaternion.identity, transform);
 
-            //pass the ring/target transform for animation/clicking purposes
-            QTE_RectHolder[QTEcount] = newQTE.GetComponentsInChildren<RectTransform>()[0];
-            QTE_TargetHolder[QTEcount] = newQTE.GetComponentsInChildren<RectTransform>()[1];
+            //ring = 0, target = 1
+            for (int i = 0; i < 2; i++)
+            {
+                //pass the ring/target transform for animation/clicking purposes
+                QTE_RectHolder[QTEcount + i] = newQTE.GetComponentsInChildren<RectTransform>()[i];
+                QTE_ImageHolder[QTEcount + i] = newQTE.GetComponentsInChildren<Image>()[i];
+            }
 
             spawnTimer = managerRef.QTEdelayTimer;
             QTEcount++;
         }
 
-        //timer for a delay between QTE target spawns (so they don't appear all at once)
+        //timer for a delay between QTE target spawns, so they don't appear all at once
         spawnTimer -= Time.deltaTime;
     }
 
-    //this function will handle de-spawning all or one target(s)
-    private void destroyQTE(bool AllOrOne, int whichOneorHowMany)
+    private void destroyQTE() //overloaded: no parameters = destroy all
     {
         //can't destroy anything if there's nothing to destroy
         if (GameObject.FindGameObjectWithTag("QTE object") == null) return;
 
-
         GameObject[] choppingBlock = GameObject.FindGameObjectsWithTag("QTE object");
-
-        if(AllOrOne)
+        for (int i = 0; i < managerRef.howManyQTE; i++)
         {
-            for (int i = 0; i < whichOneorHowMany; i++)
-            {
-                Destroy(choppingBlock[i]);
-                QTEcount--;
-            }
-        }
-        else if(!AllOrOne) 
-        {
-            Destroy(choppingBlock[whichOneorHowMany]);
+            Destroy(choppingBlock[i]);
             QTEcount--;
         }
-        
+    }
+
+    private void destroyQTE(int QTEindex) //overloaded: specify which QTE target to destroy
+    {
+        //can't destroy anything if there's nothing to destroy
+        if (GameObject.FindGameObjectWithTag("QTE object") == null) return;
+
+        GameObject[] choppingBlock = GameObject.FindGameObjectsWithTag("QTE object");
+        Destroy(choppingBlock[QTEindex]);
+        QTEcount--;
     }
 }

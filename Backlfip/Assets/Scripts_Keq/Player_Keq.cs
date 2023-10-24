@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 
 public class Player_Keq : MonoBehaviour
 {
-    //public GameManager_Keq managerRef;
+    public GameManager_Keq managerRef;
 
     private Rigidbody2D rb;
     private bool underwater = false;
@@ -24,15 +24,7 @@ public class Player_Keq : MonoBehaviour
     
     void Update()
     {
-        /*float h = Input.GetAxis("Horizontal");
-
-        if (!managerRef.isGameOver)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, Time.deltaTime * 320);
-
-            //for now, lock player movement while fishing. Can be taken out later if it's not fun for play
-            if(!managerRef.isFishing) transform.position += new Vector3(h, 0f, 0f) * Time.deltaTime * speed;
-        }*/
+        managerRef.canFish = !underwater;
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -94,7 +86,7 @@ public class Player_Keq : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Fishies"))
         {
-            //make collecting this heal you
+            
             Destroy(collision.gameObject);
         }
         

@@ -13,10 +13,11 @@ public class FishingGame_Keq : MonoBehaviour
     public LineRenderer lineRef;
     public Transform poleRef;
     public Rigidbody2D bobberRef;
+    public AudioSource reelSound;
 
     private bool prevFishing; //to check if we ended the fishing game without winning
     private bool castingLine = false;
-    private bool prevMousePressed = false;
+    private bool prevFPressed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,10 +43,11 @@ public class FishingGame_Keq : MonoBehaviour
         else if(!managerRef.isFishing && prevFishing)
         {
             Vector3 blastOff = bobberRef.transform.position;
-            blastOff.y = blastOff.y + 30;
-            castingLine = false;
-            bobberRef.transform.position = Vector3.MoveTowards(bobberRef.transform.position, blastOff, 30 * Time.deltaTime);
+            blastOff.y = blastOff.y + 50;
+            bobberRef.transform.position = Vector3.MoveTowards(bobberRef.transform.position, blastOff, 50 * Time.deltaTime);
         }
+
+        if ((reelSound.isPlaying && !castingLine) || managerRef.fishingWin) reelSound.Stop();
 
 
         linePoints[0] = poleRef.position;
@@ -53,9 +55,9 @@ public class FishingGame_Keq : MonoBehaviour
 
         lineRef.SetPositions(linePoints);
 
-        if (Input.GetMouseButtonDown(0) && !prevMousePressed) clickToCast();
+        if (Input.GetKeyDown(KeyCode.F) && !prevFPressed) clickToCast();
 
-        prevMousePressed = Input.GetMouseButtonDown(0);
+        prevFPressed = Input.GetKeyDown(KeyCode.F);
         prevFishing = managerRef.isFishing;
 
     }
@@ -73,6 +75,7 @@ public class FishingGame_Keq : MonoBehaviour
             mouseVec = new Vector3(mouseVec.x, .6f, 0f); //this makes the bobber shoot up a little, and towards the mouse
             bobberRef.AddForce(mouseVec * 75); //this sets the force it moves with
             castingLine = true; //after the above steps, the line has been cast
+            reelSound.Play();
         }
     }
 
