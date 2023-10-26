@@ -14,12 +14,14 @@ public class MiniWaterSlime_NV : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private float miniSlimeHealth = 2f;
+    private Combat_Hank combat;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.GetComponent<Rigidbody2D>();
+        combat = GetComponent<Combat_Hank>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class MiniWaterSlime_NV : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
-        if (miniSlimeHealth == 0)
+        if (combat.isDead)
         {
             spawnSlimeSplit();
             spawnWaterRefresh();
@@ -50,7 +52,7 @@ public class MiniWaterSlime_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Rock")
         {
-            miniSlimeHealth--;
+            combat.TakeDamage(2);
             source.Play();
             animator.SetBool("IsHurt", true);
         }

@@ -14,12 +14,14 @@ public class MiniSlime_NV : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private float miniSlimeHealth = 2f;
+    private Combat_Hank combat;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.GetComponent<Rigidbody2D>();
+        combat = GetComponent<Combat_Hank>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class MiniSlime_NV : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
-        if (miniSlimeHealth == 0)
+        if (combat.isDead)
         {
             spawnSlimeSplit();
             spawnFireJuice();
@@ -48,9 +50,10 @@ public class MiniSlime_NV : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "Rock")
         {
-            miniSlimeHealth--;
+            combat.TakeDamage(2);
             source.Play();
             animator.SetBool("IsHurt", true);
         }
@@ -84,14 +87,14 @@ public class MiniSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         animator.SetBool("IsHurt", true);
-        miniSlimeHealth--;
+        combat.TakeDamage(2);
         source.Play();
     }
 
     private void lavaDamage()
     {
         animator.SetBool("IsHurt", true);
-        miniSlimeHealth--;
+        combat.TakeDamage(2);
         source.Play();
     }
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8407725129644438398}
   - component: {fileID: 134684193565397415}
   - component: {fileID: 865702210949626194}
+  - component: {fileID: 1922516486341967210}
   m_Layer: 0
   m_Name: WaterSlime_NV
   m_TagString: WaterEnemy
@@ -287,3 +288,21 @@ MonoBehaviour:
   burnTime: 2
   inLava: 0
   animator: {fileID: -8407725129644438398}
+--- !u!114 &1922516486341967210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535158563778163743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a772b8973f5faa49b1311b87bd56de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  baseHealth: 10
+  damage: 2
+  baseDamage: 2
+  knockback: 0
+  isDead: 0

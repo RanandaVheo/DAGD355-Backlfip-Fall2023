@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7560164880595190855}
   - component: {fileID: 5418347932885130032}
   - component: {fileID: -5055233691436949666}
+  - component: {fileID: 7672783348651440642}
   m_Layer: 0
   m_Name: MiniSlime_NV
   m_TagString: FireEnemy
@@ -286,3 +287,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7672783348651440642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624276657588719439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a772b8973f5faa49b1311b87bd56de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+  baseHealth: 4
+  damage: 2
+  baseDamage: 2
+  knockback: 0
+  isDead: 0
