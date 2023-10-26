@@ -159,14 +159,24 @@ public class PlayerInventory_Hank : MonoBehaviour
 
     public void DropSelectedItem()
     {
-        Item_Hank itemToDrop = items[selectedItemIndex].GetComponent<Item_Hank>();
+        Item_Hank itemToDrop;
+        try
+        {
+            itemToDrop = items[selectedItemIndex].GetComponent<Item_Hank>();
+        } catch (Exception e)
+        {
+            Debug.Log("No item to drop.");
+            return;
+        }
+        
         if (itemToDrop == null)
         {
             Debug.Log("No item to drop");
             return;
         }
         Drop(items[selectedItemIndex]);
-        itemToDrop.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
+        itemToDrop.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        itemToDrop.transform.position = new Vector2(transform.position.x, transform.position.y);
         itemToDrop.Drop();
     }
 
