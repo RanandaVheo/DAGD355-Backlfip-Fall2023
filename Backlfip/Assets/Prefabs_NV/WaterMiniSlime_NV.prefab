@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a772b8973f5faa49b1311b87bd56de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  baseHealth: 10
+  health: 4
+  baseHealth: 4
   damage: 2
   baseDamage: 2
   knockback: 0

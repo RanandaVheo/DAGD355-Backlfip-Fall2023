@@ -86,14 +86,14 @@ public class MiniWaterSlime_NV : MonoBehaviour
     private void burnDamage()
     {
         animator.SetBool("IsHurt", true);
-        miniSlimeHealth--;
+        combat.TakeDamage(2);
         source.Play();
     }
 
     private void lavaDamage()
     {
         animator.SetBool("IsHurt", true);
-        miniSlimeHealth--;
+        combat.TakeDamage(2);
         source.Play();
     }
 }

@@ -414,4 +414,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516e29e7eeaf88745b4f1d4eb147cb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  purchaseableItem: {fileID: 0}
+  purchaseableItem: {fileID: 1082936976440262493, guid: 0a59620f29c970d49ad927ebc808e7ef, type: 3}

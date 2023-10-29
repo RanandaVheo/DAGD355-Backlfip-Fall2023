@@ -22,7 +22,7 @@ public class PlayerInventory_Hank : MonoBehaviour
     private bool tabDownLastFrame = false;
     private List<Image> uiImageSlots;
     private List<Image> uiImageOverlaySlots;
-    private Canvas uiCanvas;
+    public Canvas uiCanvas;
 
     void Start()
     {

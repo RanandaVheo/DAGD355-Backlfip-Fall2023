@@ -18,10 +18,10 @@ public class Item_Hank : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         circleColliders = GetComponents<CircleCollider2D>();
 
-        spriteRenderer.color = Random.ColorHSV();
+        //spriteRenderer.color = Random.ColorHSV();
     }
 
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6636642872895116774}
   - component: {fileID: 2902808509711461690}
   m_Layer: 0
-  m_Name: Item_Hank
+  m_Name: FishItem_Hank
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c2eb087ae071c459599b8021cd899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: template name
-  description: create prefab instances for specific items
-  canStack: 1
+  itemName: Fish
+  description: does fish stuff
+  canStack: 0
   amount: 3
   maxStack: 3
   spriteRenderer: {fileID: 0}
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fea2720a8ff20954ba78d3a25c38898a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9344236183a0a9449f630957687a520, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

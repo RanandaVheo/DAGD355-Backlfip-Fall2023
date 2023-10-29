@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class Shopkeeper_Hank : MonoBehaviour
     [SerializeField] private GameObject indicatorHandle;
     [SerializeField] private GameObject purchaseableButtonPrefab;
     private Canvas shopCanvas;
+    private Canvas textCanvas;
     private SpriteRenderer indicatorRenderer;
     private bool eKeyDownLastFrame = false;
     private GameObject playerHandle;
@@ -19,8 +21,12 @@ public class Shopkeeper_Hank : MonoBehaviour
     void Start()
     {
         indicatorRenderer = indicatorHandle.GetComponent<SpriteRenderer>();
+        indicatorRenderer.enabled = false;
+
         shopCanvas = GetComponentInChildren<Canvas>();
-        Debug.Log(shopCanvas == null);
+        shopCanvas.enabled = false;
+        textCanvas = GetComponentsInChildren<Canvas>()[1];
+        textCanvas.enabled = false;
         for (int i = 0; i < 5; i++)
         {
             GameObject tempPurchaseableButton = Instantiate(purchaseableButtonPrefab, shopCanvas.transform.position, Quaternion.identity, shopCanvas.transform);
@@ -53,6 +59,13 @@ public class Shopkeeper_Hank : MonoBehaviour
         {
             eKeyDownLastFrame = false;
         }
+
+        if (!playerHandle) return;
+        PlayerInventory_Hank inventory = playerHandle.GetComponent<PlayerInventory_Hank>();
+        if (inventory.uiCanvas.enabled && shopCanvas.enabled)
+        {
+            inventory.uiCanvas.enabled = false;
+        }
     }
 
     public void TryPurchaseItem()
@@ -66,6 +79,7 @@ public class Shopkeeper_Hank : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             indicatorRenderer.enabled = true;
+            textCanvas.enabled = true;
             playerHandle = collision.gameObject;
         }
     }
@@ -75,6 +89,7 @@ public class Shopkeeper_Hank : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             indicatorRenderer.enabled = false;
+            textCanvas.enabled = false;
             shopCanvas.enabled = false;
             foreach (GameObject button in buttons)
             {
