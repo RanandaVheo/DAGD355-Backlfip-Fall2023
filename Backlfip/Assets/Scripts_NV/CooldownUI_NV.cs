@@ -41,7 +41,6 @@ public class CooldownUI_NV : MonoBehaviour
 
             if(fireballCooldown.fillAmount <= 0)
             {
-                fireballCooldown.fillAmount = 1;
                 fireCooldown = false;
             }
         }
@@ -60,7 +59,6 @@ public class CooldownUI_NV : MonoBehaviour
 
             if (lavaPuddleCooldown.fillAmount <= 0)
             {
-                lavaPuddleCooldown.fillAmount = 1;
                 lavaCooldown = false;
             }
         }
