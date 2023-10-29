@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Shopkeeper_Hank : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] availableItems = { };
+    public GameObject[] availableItems = { };
     [SerializeField] private GameObject indicatorHandle;
     [SerializeField] private GameObject purchaseableButtonPrefab;
     private Canvas shopCanvas;
@@ -68,9 +68,10 @@ public class Shopkeeper_Hank : MonoBehaviour
         }
     }
 
-    public void TryPurchaseItem()
+    public bool TryPurchaseItem()
     {
-        
+
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

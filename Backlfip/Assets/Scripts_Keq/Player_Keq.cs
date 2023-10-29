@@ -13,6 +13,7 @@ public class Player_Keq : MonoBehaviour
     private PlayerInventory_Hank inventory;
     private bool xDownLastFrame = false;
     private bool eDownLastFrame = false;
+    public int money = 0;
 
 
     void Start()
