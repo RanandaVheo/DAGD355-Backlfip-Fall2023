@@ -13,7 +13,6 @@ public class MiniSlime_NV : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float miniSlimeHealth = 2f;
     private Combat_Hank combat;
 
     // Start is called before the first frame update
@@ -71,6 +70,10 @@ public class MiniSlime_NV : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             animator.SetBool("IsHurt", false);
+        }
+        if (collision.gameObject.tag == "Underwater")
+        {
+            combat.isDead = true;
         }
     }
 
