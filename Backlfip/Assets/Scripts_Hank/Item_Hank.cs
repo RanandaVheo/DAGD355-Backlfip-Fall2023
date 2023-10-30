@@ -18,12 +18,11 @@ public class Item_Hank : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         circleColliders = GetComponents<CircleCollider2D>();
 
         //spriteRenderer.color = Random.ColorHSV();
     }
-
 
 
     // Update is called once per frame
@@ -54,6 +53,7 @@ public class Item_Hank : MonoBehaviour
 
     public void Disable()
     {
+        Start();
         spriteRenderer.enabled = false;
         foreach (CircleCollider2D circleCollider in circleColliders)
         {

@@ -25,6 +25,8 @@ public class Coin_NV : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Player_Keq playerScript = collision.gameObject.GetComponent<Player_Keq>();
+            playerScript.money+=2;
             Destroy(gameObject);
         }
     }

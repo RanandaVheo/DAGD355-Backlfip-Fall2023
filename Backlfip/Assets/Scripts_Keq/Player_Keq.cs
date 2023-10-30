@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 
 public class Player_Keq : MonoBehaviour
@@ -13,18 +15,22 @@ public class Player_Keq : MonoBehaviour
     private PlayerInventory_Hank inventory;
     private bool xDownLastFrame = false;
     private bool eDownLastFrame = false;
+    private TextMeshProUGUI textMesh;
+    public int money = 0;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         inventory = GetComponent<PlayerInventory_Hank>();
+        textMesh = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     
     void Update()
     {
         managerRef.canFish = !underwater;
+        textMesh.text = "$ " + money.ToString();
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -110,6 +116,9 @@ public class Player_Keq : MonoBehaviour
         {
             case "ExampleItemName":
                 // do related example item functions!
+                break;
+            case "Deed":
+                SceneManager.LoadScene("GameWin_NV");
                 break;
             default:
                 Debug.Log(selectedItemName + " used!");
