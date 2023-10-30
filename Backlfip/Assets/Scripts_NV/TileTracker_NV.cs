@@ -14,11 +14,11 @@ public class TileTracker_NV
 
     public void tileCaptured()
     {
-        tilesCaptured++;
+        tilesCaptured += 1;
     }
 
     public void tileLost()
     {
-        tilesCaptured--;
+        tilesCaptured -= 1;
     }
 }

@@ -30,7 +30,11 @@ public class Ground_Hank : MonoBehaviour
 
     public void Burn()
     {
-        if (spriteRenderer.sprite == waterSprite || spriteRenderer.sprite == originalSprite)
+        if (spriteRenderer.sprite == waterSprite)
+        {
+            spriteRenderer.sprite = fireSprite;
+        }
+        if (spriteRenderer.sprite == originalSprite)
         {
             spriteRenderer.sprite = fireSprite;
             GameManager_NV.gameManagerNV.tileTracker.tileLost();
@@ -39,7 +43,11 @@ public class Ground_Hank : MonoBehaviour
 
     public void Hydrate()
     {
-        if (spriteRenderer.sprite == fireSprite || spriteRenderer.sprite == originalSprite)
+        if (spriteRenderer.sprite == fireSprite)
+        {
+            spriteRenderer.sprite = waterSprite;
+        }
+        if (spriteRenderer.sprite == originalSprite)
         {
             spriteRenderer.sprite = waterSprite;
             GameManager_NV.gameManagerNV.tileTracker.tileLost();
