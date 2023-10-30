@@ -7,6 +7,7 @@ public class LavaPuddle_NV : MonoBehaviour
 
     public GameObject player;
     public GameObject lavaPuddlePrefab;
+    public AudioSource source;
     public float lavaPuddleCooldown = 5;
     public bool lavaOnCooldown = false;
     private Vector3 target;
@@ -24,7 +25,7 @@ public class LavaPuddle_NV : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && lavaOnCooldown == false)
         {
-            // NEED TO ADD: CHECK IF PLAYER HAS ENOUGH FIRE JUICE
+            source.Play();
             lavaOnCooldown = true;
             lavaPuddle();
         }
