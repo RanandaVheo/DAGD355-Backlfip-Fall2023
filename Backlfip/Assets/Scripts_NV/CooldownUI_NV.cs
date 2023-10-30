@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CooldownUI_NV : MonoBehaviour
 {
@@ -27,9 +28,16 @@ public class CooldownUI_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tileUI.text = GameManager_NV.gameManagerNV.tileTracker.tilesCaptured.ToString();
+        tileUI.text = ("Tiles: " + GameManager_NV.gameManagerNV.tileTracker.tilesCaptured.ToString() + " / 73");
         FireballUI();
         LavaUI();
+
+        // CHECK IF PLAYER HAS WON
+
+        if (GameManager_NV.gameManagerNV.tileTracker.tilesCaptured == 87)
+        {
+            SceneManager.LoadScene("GameWin_NV");
+        }
     }
 
     void FireballUI()
