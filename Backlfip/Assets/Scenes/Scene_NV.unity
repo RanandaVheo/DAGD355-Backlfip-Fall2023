@@ -2162,11 +2162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempBar: {fileID: 156869439}
   speed: 7.5
-  playerScore: 0
   isDamaged: 0
   isAttacking: 0
   animator: {fileID: 324929343}
-  scoreUI: {fileID: 676685831}
 --- !u!50 &324929340
 Rigidbody2D:
   serializedVersion: 4
@@ -4467,6 +4465,7 @@ MonoBehaviour:
   lavaTime: 5
   fireballKey: 324
   lavaKey: 113
+  tileUI: {fileID: 676685831}
 --- !u!114 &666273720
 MonoBehaviour:
   m_ObjectHideFlags: 0

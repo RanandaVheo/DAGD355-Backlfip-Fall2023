@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Ground_Hank : MonoBehaviour
 {
+
     public Sprite originalSprite;
     public Sprite fireSprite;
     public Sprite waterSprite;
 
+
     //private Tilemap tilemapHandle;
     private SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
@@ -22,21 +25,33 @@ public class Ground_Hank : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     public void Burn()
     {
-        spriteRenderer.sprite = fireSprite;
+        if (spriteRenderer.sprite == waterSprite || spriteRenderer.sprite == originalSprite)
+        {
+            spriteRenderer.sprite = fireSprite;
+            GameManager_NV.gameManagerNV.tileTracker.tileLost();
+        }
     }
 
     public void Hydrate()
     {
-        spriteRenderer.sprite = waterSprite;
+        if (spriteRenderer.sprite == fireSprite || spriteRenderer.sprite == originalSprite)
+        {
+            spriteRenderer.sprite = waterSprite;
+            GameManager_NV.gameManagerNV.tileTracker.tileLost();
+        }
     }
     public void Capture()
     {
-        spriteRenderer.sprite = originalSprite;
+        if(spriteRenderer.sprite == fireSprite || spriteRenderer.sprite == waterSprite)
+        {
+            spriteRenderer.sprite = originalSprite;
+            GameManager_NV.gameManagerNV.tileTracker.tileCaptured();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

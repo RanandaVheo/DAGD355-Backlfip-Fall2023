@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CooldownUI_NV : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class CooldownUI_NV : MonoBehaviour
     public KeyCode fireballKey;
     public KeyCode lavaKey;
 
+    public TextMeshProUGUI tileUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class CooldownUI_NV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        tileUI.text = GameManager_NV.gameManagerNV.tileTracker.tilesCaptured.ToString();
         FireballUI();
         LavaUI();
     }
