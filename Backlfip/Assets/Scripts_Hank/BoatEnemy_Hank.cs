@@ -44,7 +44,7 @@ public class BoatEnemy_Hank : MonoBehaviour
 
     void Kill()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 50; i++)
         {
 
             GameObject tempCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
