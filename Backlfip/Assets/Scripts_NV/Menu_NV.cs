@@ -10,8 +10,18 @@ public class Menu_NV : MonoBehaviour
         SceneManager.LoadScene("Scene_NV");
     }
 
+    public void OnHowToPlayButton()
+    {
+        SceneManager.LoadScene("HowToPlay_NV");
+    }
+
     public void OnQuitButton()
     {
         Application.Quit();
+    }
+
+    public void OnMenuButton()
+    {
+        SceneManager.LoadScene("Menu_NV");
     }
 }
