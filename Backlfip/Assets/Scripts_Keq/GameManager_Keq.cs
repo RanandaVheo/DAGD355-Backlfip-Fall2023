@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager_Keq : MonoBehaviour
 {
-    public bool isGameOver = false;
-    public bool winOrLose = false; //false = win, true = lose
-
     public bool isFishing = false; //false = not fishing, true = fishing right now
     public bool fishingWin = false; //will be true, to signal to other scripts a success
     public bool canFish = true; //to prevent endless QTE events while underwater
@@ -15,8 +12,7 @@ public class GameManager_Keq : MonoBehaviour
     public float fishingTimerMax = 4f;
     public float QTEdelayTimer = 1.5f;
 
-    public int scoreTally = 0;
-    public int WinCondition = 5;
+    public bool isCooking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +24,5 @@ public class GameManager_Keq : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void GameLost()
-    {
-        winOrLose = true;
     }
 }

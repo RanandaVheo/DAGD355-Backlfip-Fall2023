@@ -17,12 +17,9 @@ public class UIManager_Keq : MonoBehaviour
     private Vector2 QTEsizeDelta;
     private float QTEcolorDelta;
     private int QTEcount = 0;
-    private float spawnTimer = 0;
     private bool prevFPressed = false;
     private float ringMin = 18;
     private float ringMax = 28;
-
-
 
     void Start()
     {
@@ -34,31 +31,22 @@ public class UIManager_Keq : MonoBehaviour
         QTEcolorDelta = Time.deltaTime / 4;
     }
 
-    
     void Update()
     {
         //if we are fishing
         if (managerRef.isFishing)
         {
-            //run the spawn timer/spawn QTEs as needed
+            //spawn QTEs as needed
             if(QTEcount < managerRef.howManyQTE) spawnQTEs();
 
-            //we need to be running animations for the UI
+            //run animations for the UI
             QuickTimeEventpopups();
 
-            //we need to be checking for where the player is clicking
+            //check for where the player is aiming
             if(Input.GetKeyDown(KeyCode.F) && !prevFPressed) QTEcollisionDetect();
 
         }
-        //else if we are not fishing and the QTE icons are still on the screen, 
-        else if (!managerRef.isFishing) 
-        {
-            //delete them
-            destroyQTE();
-
-            //refresh timer for next time we fish
-            spawnTimer = 0;
-        }
+        else if (!managerRef.isFishing)  destroyQTE();
 
         prevFPressed = Input.GetKeyDown(KeyCode.F);
     }
@@ -125,26 +113,18 @@ public class UIManager_Keq : MonoBehaviour
     //this function will handle spawning targets
     private void spawnQTEs()
     {
-        if(spawnTimer <= 0)
+        //make a new target with a random location
+        Vector3 thisGuyPos = new Vector3(Random.Range(50, Screen.width - 50), Random.Range(50, Screen.height - 50), 0f);
+        GameObject newQTE = Instantiate(QTEprefab, thisGuyPos, Quaternion.identity, transform);
+
+        //ring = 0, target = 1
+        for (int i = 0; i < 2; i++)
         {
-            //make a new target with a random location
-            Vector3 thisGuyPos = new Vector3(Random.Range(50, Screen.width - 50), Random.Range(50, Screen.height - 50), 0f);
-            GameObject newQTE = Instantiate(QTEprefab, thisGuyPos, Quaternion.identity, transform);
-
-            //ring = 0, target = 1
-            for (int i = 0; i < 2; i++)
-            {
-                //pass the ring/target transform for animation/clicking purposes
-                QTE_RectHolder[QTEcount + i] = newQTE.GetComponentsInChildren<RectTransform>()[i];
-                QTE_ImageHolder[QTEcount + i] = newQTE.GetComponentsInChildren<Image>()[i];
-            }
-
-            spawnTimer = managerRef.QTEdelayTimer;
-            QTEcount++;
+            //pass the ring/target transform for animation/clicking purposes
+            QTE_RectHolder[QTEcount + i] = newQTE.GetComponentsInChildren<RectTransform>()[i];
+            QTE_ImageHolder[QTEcount + i] = newQTE.GetComponentsInChildren<Image>()[i];
         }
-
-        //timer for a delay between QTE target spawns, so they don't appear all at once
-        spawnTimer -= Time.deltaTime;
+        QTEcount++;
     }
 
     private void destroyQTE() //overloaded: no parameters = destroy all

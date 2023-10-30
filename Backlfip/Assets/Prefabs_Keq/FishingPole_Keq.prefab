@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 1507145560515254084}
   - component: {fileID: 2123292006933183055}
   m_Layer: 0
-  m_Name: FishingPole
+  m_Name: FishingPole_Keq
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   lineRef: {fileID: 2123292006933183055}
   poleRef: {fileID: 7195889271282427287}
   bobberRef: {fileID: 4876159922768078286}
+  reelSound: {fileID: 0}
 --- !u!120 &2123292006933183055
 LineRenderer:
   serializedVersion: 2
@@ -241,8 +242,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0.42399693, a: 1}
-      key1: {r: 1, g: 0, b: 0.42399693, a: 1}
+      key0: {r: 0, g: 0.020232411, b: 0.21698111, a: 1}
+      key1: {r: 0, g: 0.020232411, b: 0.21698111, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -453,4 +454,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnedObject: {fileID: 2610702472311829671, guid: 05e5031d2b4d9d4469ad32feea301863, type: 3}
   managerRef: {fileID: 0}
-  COOLDOWN_TIMER_MAX: 1
