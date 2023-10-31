@@ -14,11 +14,11 @@ public class PlayerInventory_Hank : MonoBehaviour
     public int inventorySize = 5;
     public int selectedItemIndex = 0;
 
-
+    public CookingGame_Keq cookingRef_Keq;
 
     [SerializeField] GameObject inventoryUIPrefab;
     [SerializeField] Sprite activeItemIndicator;
-    private GameObject inventoryUI;
+    public GameObject inventoryUI;
     private bool tabDownLastFrame = false;
     private List<Image> uiImageSlots;
     private List<Image> uiImageOverlaySlots;
@@ -62,7 +62,8 @@ public class PlayerInventory_Hank : MonoBehaviour
             tabDownLastFrame = false;
         }
 
-        inventoryUI.transform.position = gameObject.transform.position;
+        //The inventory will appear scaled up and anchored to a spot on the HUD while cooking
+        if(!cookingRef_Keq.isCooking) inventoryUI.transform.position = gameObject.transform.position;
 
         if (!uiCanvas.enabled) return;
 
@@ -184,6 +185,13 @@ public class PlayerInventory_Hank : MonoBehaviour
     {
         Item_Hank itemToDrop = item.GetComponent<Item_Hank>();
         items.Remove(item);
+
+        //if cooking, add to ingredients. otherwise, continue as normal drop
+        if(cookingRef_Keq.isCooking)
+        {
+            cookingRef_Keq.ingredientAdded(itemToDrop);
+        }
+
         itemToDrop.Drop();
     }
 

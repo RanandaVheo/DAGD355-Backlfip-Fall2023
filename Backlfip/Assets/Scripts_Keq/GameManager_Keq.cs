@@ -12,8 +12,6 @@ public class GameManager_Keq : MonoBehaviour
     public float fishingTimerMax = 4f;
     public float QTEdelayTimer = 1.5f;
 
-    public bool isCooking = false;
-
     // Start is called before the first frame update
     void Start()
     {

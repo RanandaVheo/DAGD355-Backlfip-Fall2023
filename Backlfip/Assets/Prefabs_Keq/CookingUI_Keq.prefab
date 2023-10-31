@@ -306,6 +306,10 @@ MonoBehaviour:
   invRef: {fileID: 0}
   BGImage: {fileID: 9054580162248887498}
   invSpawn: {fileID: 371697040412880871}
+  ingredientL: {fileID: 8396045812451226226}
+  ingredientR: {fileID: 2035591433052872382}
+  ingredientT: {fileID: 8520075669855223589}
+  mealResult: {fileID: 4732799851740128451}
 --- !u!1 &4375090524595595555
 GameObject:
   m_ObjectHideFlags: 0
